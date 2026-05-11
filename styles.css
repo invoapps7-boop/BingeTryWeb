@@ -108,10 +108,21 @@ body {
 .nav-links a:hover::after { width: 100%; }
 .nav-cta { display: flex; align-items: center; gap: 12px; }
 .nav-cta a {
-  display: flex; align-items: center; gap: 6px; text-decoration: none;
+  display: flex; align-items: center; justify-content: center;
+  width: 40px; height: 40px; border-radius: 12px;
+  background: var(--surface-glass);
+  border: 1px solid var(--border-subtle);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  text-decoration: none;
   color: var(--text-secondary); transition: var(--transition-smooth);
 }
-.nav-cta a:hover { color: var(--text-primary); }
+.nav-cta a:hover { 
+  color: var(--text-primary);
+  background: rgba(45,140,255,0.1);
+  border-color: var(--accent-primary);
+  box-shadow: 0 4px 16px rgba(45,140,255,0.25);
+  transform: translateY(-2px);
+}
 .nav-cta svg { width: 22px; height: 22px; }
 .nav-hamburger {
   display: none; background: none; border: none; color: var(--text-primary);
@@ -224,8 +235,16 @@ body {
 }
 .hero-gif-demo {
   width: 100%; max-width: 420px; border-radius: var(--radius-xl);
-  border: 1px solid var(--border-subtle); box-shadow: var(--shadow-glow);
+  box-shadow: var(--shadow-glow);
   position: relative; z-index: 2;
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.4s ease, border-radius 0.4s ease;
+  clip-path: inset(2px 6px 2px 2px round var(--radius-xl));
+}
+.hero-gif-demo:hover {
+  transform: scale(1.08);
+  border-radius: var(--radius-md);
+  box-shadow: 0 0 80px rgba(45,140,255,0.3);
+  clip-path: inset(2px 6px 2px 2px round var(--radius-md));
 }
 
 @media (max-width: 900px) {
