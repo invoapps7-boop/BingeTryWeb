@@ -3,8 +3,9 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>BingeTry — AI Virtual Try-On & Garment Photography</title>
-  <meta name="description" content="The ultimate AI virtual fitting room for fashion lovers, and a professional AI photoshoot studio for e-commerce brands."/>
+  <title>BingeTry — Your Personal AI Stylist</title>
+  <meta name="description" content="BingeTry is your personal AI stylist that understands your colour palette, body proportions, and style preferences. Get fresh curated looks daily and try on every style virtually."/>
+  <link rel="icon" type="image/png" href="assets/logo_new.png"/>
   <link rel="stylesheet" href="styles.css"/>
 </head>
 <body>
@@ -13,12 +14,13 @@
 <nav class="nav" id="navbar">
   <div class="nav-inner">
     <a href="#" class="nav-logo">
-      <div class="nav-logo-icon"><img src="assets/logo.png" alt="BingeTry Logo"/></div>
+      <div class="nav-logo-icon"><img src="assets/logo_new.png" alt="BingeTry Logo"/></div>
       <span class="nav-logo-text">BingeTry</span>
     </a>
     <ul class="nav-links">
-      <li><a href="#for-you">For You</a></li>
-      <li><a href="#for-business">For Business</a></li>
+      <li><a href="#features">Features</a></li>
+      <li><a href="#style-feed">Style Feed</a></li>
+      <li><a href="#lookbook">Lookbook</a></li>
       <li><a href="#how-it-works">How It Works</a></li>
     </ul>
     <div class="nav-cta">
@@ -37,8 +39,9 @@
 
 <!-- Mobile Nav -->
 <div class="mobile-nav" id="mobile-nav">
-  <a href="#for-you">For You</a>
-  <a href="#for-business">For Business</a>
+  <a href="#features">Features</a>
+  <a href="#style-feed">Style Feed</a>
+  <a href="#lookbook">Lookbook</a>
   <a href="#how-it-works">How It Works</a>
   <div class="mobile-nav-btns">
     <a href="https://apps.apple.com/us/app/bingetry/id6767003047" target="_blank" class="store-btn store-btn--sm">
@@ -57,8 +60,9 @@
   <div class="container">
     <div class="hero-inner">
       <div class="hero-content">
-        <h1>AI Try-On <span style="font-family: 'Inter', sans-serif;">&amp;</span><br/><span class="gradient-text">Photography.</span></h1>
-        <p class="hero-sub">Instantly wear any outfit or generate stunning e-commerce catalog shots with AI.</p>
+        <div class="section-badge">AI-Powered Personal Styling</div>
+        <h1>Your Personal<br/><em>AI Stylist.</em></h1>
+        <p class="hero-sub">Understands your colour palette, body proportions, and style preferences. Get fresh curated looks daily — and try on every single one.</p>
         <div class="store-btns">
           <a href="https://apps.apple.com/us/app/bingetry/id6767003047" target="_blank" class="store-btn store-btn--hero">
             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
@@ -72,130 +76,121 @@
       </div>
       <div class="hero-visual">
         <div class="hero-glow"></div>
-        <img src="https://humanaigc.github.io/outfit-anyone/content/teaser/t3.gif" alt="BingeTry AI Virtual Try-On Demo" class="hero-gif-demo" loading="eager"/>
+        <div class="hero-phone-window">
+          <div class="hero-phone-notch"></div>
+          <video autoplay loop muted playsinline class="hero-video-demo" poster="assets/ss_stylist.png">
+            <source src="assets/hero_video.mp4" type="video/mp4"/>
+            Your browser does not support the video tag.
+          </video>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ===== FOR SHOPPERS (B2C) ===== -->
-<section class="section-shoppers" id="for-you">
+<div class="section-divider"></div>
+
+<!-- ===== FEATURES ===== -->
+<section class="section-features" id="features">
   <div class="container">
-    <div class="shoppers-header animate-on-scroll">
-      <div class="section-badge">For Fashion Lovers</div>
-      <h2 class="section-title">For You:<br/><span class="gradient-text">Wear Anything.</span></h2>
-      <p class="sellers-copy">Your Personal AI Try-On. Shop smarter and experiment with trends before you buy.</p>
-    </div>
-    <div class="sellers-hero-visual animate-on-scroll">
-      <div class="phone-mockup phone-mockup--sellers">
-        <div class="phone-mockup-screen">
-          <img src="assets/app_screenshot.png" alt="BingeTry app showing AI virtual try-on feature"/>
-        </div>
-      </div>
+    <div class="features-header animate-on-scroll">
+      <div class="section-badge">Intelligent Styling</div>
+      <h2 class="section-title">Style That<br/><span class="gold-text">Understands You.</span></h2>
+      <p class="section-desc" style="margin: 20px auto 0;">Every recommendation is tailored to your unique colour palette, body proportions, and personal aesthetic.</p>
     </div>
     <div class="features-grid">
       <div class="feature-card animate-on-scroll">
         <div class="feature-icon">
-          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"/></svg>
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"/></svg>
         </div>
-        <h4 class="feature-title">Paste Any Link</h4>
-        <p class="feature-desc">Drop in a shopping link or Pinterest URL to instantly wear the item.</p>
+        <h4 class="feature-title">Colour Palette Analysis</h4>
+        <p class="feature-desc">Our AI analyses your skin tone, hair colour, and preferences to identify which colours make you glow.</p>
+      </div>
+      <div class="feature-card animate-on-scroll">
+        <div class="feature-icon">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
+        </div>
+        <h4 class="feature-title">Body Proportion Styling</h4>
+        <p class="feature-desc">Understands your proportions and suggests fits, silhouettes, and cuts that flatter your frame perfectly.</p>
+      </div>
+      <div class="feature-card animate-on-scroll">
+        <div class="feature-icon">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+        </div>
+        <h4 class="feature-title">Occasion-Based Scoring</h4>
+        <p class="feature-desc">Every look is scored for colour match, fit balance, occasion fit, aesthetic match, and your personal preferences.</p>
       </div>
       <div class="feature-card animate-on-scroll">
         <div class="feature-icon">
           <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
         </div>
-        <h4 class="feature-title">Upload Screenshot</h4>
-        <p class="feature-desc">Saw a fit on Instagram? Screenshot it and see exactly how it looks on you.</p>
-      </div>
-      <div class="feature-card animate-on-scroll">
-        <div class="feature-icon">
-          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 18.657A8 8 0 016.343 7.343S7 9 9 10c0-2 .5-5 2.986-7C14 5 16.09 5.777 17.656 7.343A7.975 7.975 0 0120 13a7.975 7.975 0 01-2.343 5.657z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.879 16.121A3 3 0 1012.015 11L11 14H9c0 .768.293 1.536.879 2.121z"/></svg>
-        </div>
-        <h4 class="feature-title">Try Trending Fits</h4>
-        <p class="feature-desc">Not sure what suits you? Explore the latest aesthetics without ever clicking 'checkout.'</p>
-      </div>
-      <div class="feature-card animate-on-scroll">
-        <div class="feature-icon">
-          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-        </div>
-        <h4 class="feature-title">Flex New Styles</h4>
-        <p class="feature-desc">Generate hyper-realistic AI try-ons and share your new looks with the world.</p>
+        <h4 class="feature-title">Virtual Try-On</h4>
+        <p class="feature-desc">Try on every look from your style feed. See exactly how each outfit looks on you before committing.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ===== FOR BUSINESS (B2B) ===== -->
-<section class="section-sellers" id="for-business">
+<div class="section-divider"></div>
+
+<!-- ===== STYLE FEED ===== -->
+<section class="section-showcase" id="style-feed">
   <div class="container">
-    <div class="sellers-header animate-on-scroll">
-      <div class="section-badge">For Creators & Sellers</div>
-      <h2 class="section-title">For Business:<br/><span class="gradient-text">Pro AI Photoshoot.</span></h2>
-      <p class="sellers-copy">Skip the expensive photoshoots. Turn flat-lays and ghost mannequins into high-converting catalog images in seconds.</p>
-    </div>
-    <div class="sellers-hero-visual animate-on-scroll">
-      <div class="phone-mockup phone-mockup--sellers">
-        <div class="phone-mockup-screen">
-          <img src="assets/app_screenshot_garment.png" alt="BingeTry app AI Garment Photography demo"/>
-        </div>
+    <div class="showcase-inner">
+      <div class="showcase-content animate-on-scroll">
+        <div class="section-badge">Daily Curated Looks</div>
+        <h2 class="section-title">Your Daily<br/><span class="gold-text">Style Feed.</span></h2>
+        <p class="section-desc">Fresh, curated outfits delivered to you every day — each one scored and styled specifically for your profile. From boardroom to brunch, every look is considered.</p>
       </div>
-    </div>
-    <div class="features-grid">
-      <div class="feature-card animate-on-scroll">
-        <div class="feature-icon">
-          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
-        </div>
-        <h4 class="feature-title">Flat-lay to Model</h4>
-        <p class="feature-desc">Just upload your garment photo. No studio, no cameras, no hassle.</p>
-      </div>
-      <div class="feature-card animate-on-scroll">
-        <div class="feature-icon">
-          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-        </div>
-        <h4 class="feature-title">Diverse Models & Poses</h4>
-        <p class="feature-desc">Select the perfect face, body type, and pose to match your brand's exact aesthetic.</p>
-      </div>
-      <div class="feature-card animate-on-scroll">
-        <div class="feature-icon">
-          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
-        </div>
-        <h4 class="feature-title">Custom Scenes & Prompts</h4>
-        <p class="feature-desc">Control the background and editorial vibe with custom text instructions.</p>
-      </div>
-      <div class="feature-card animate-on-scroll">
-        <div class="feature-icon">
-          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/></svg>
-        </div>
-        <h4 class="feature-title">E-com Ready</h4>
-        <p class="feature-desc">Export in the exact aspect ratios required for Meesho, Myntra, Amazon, Flipkart, and Instagram.</p>
+      <div class="showcase-visual animate-on-scroll">
+        <img src="assets/fashion_editorial.png" alt="BingeTry AI Style Feed — Scroll Looks made for you mockup showcase" class="showcase-image"/>
       </div>
     </div>
   </div>
 </section>
+
+<div class="section-divider"></div>
+
+<!-- ===== LOOKBOOK ===== -->
+<section class="section-showcase" id="lookbook" style="background: var(--bg);">
+  <div class="container">
+    <div class="showcase-inner reverse">
+      <div class="showcase-content animate-on-scroll">
+        <div class="section-badge">Curated Collections</div>
+        <h2 class="section-title">Look Put Together<br/><span class="gold-text">Every Day.</span></h2>
+        <p class="section-desc">Explore occasion-based lookbooks — Date Night, Girl's Day Out, Campus Mode, Evening Mode, and more. For every moment in your life, effortlessly styled.</p>
+      </div>
+      <div class="showcase-visual animate-on-scroll">
+        <img src="assets/ss_lookbook.png" alt="BingeTry Lookbook — Occasion-based curated style collections" class="showcase-image"/>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
 
 <!-- ===== HOW IT WORKS ===== -->
 <section class="section-how" id="how-it-works">
   <div class="container">
     <div class="how-header animate-on-scroll">
-      <div class="section-badge">Simple & Fast</div>
+      <div class="section-badge">Simple &amp; Effortless</div>
       <h2 class="section-title">How It Works</h2>
     </div>
     <div class="steps-grid">
       <div class="step-card animate-on-scroll">
         <div class="step-number">1</div>
-        <h3 class="step-title">Download the App</h3>
-        <p class="step-desc">Available on iOS and Android. Get started in seconds.</p>
+        <h3 class="step-title">Share Your Style</h3>
+        <p class="step-desc">Tell us your preferences, occasion needs, and aesthetic. Our AI builds your unique style profile.</p>
       </div>
       <div class="step-card animate-on-scroll">
         <div class="step-number">2</div>
-        <h3 class="step-title">Choose Your Experience</h3>
-        <p class="step-desc">Select Personal AI Try-On for yourself, or Pro AI Photoshoot for your business.</p>
+        <h3 class="step-title">Get Styled Daily</h3>
+        <p class="step-desc">Receive a personalised feed of curated looks — each scored and matched to your profile.</p>
       </div>
       <div class="step-card animate-on-scroll">
         <div class="step-number">3</div>
-        <h3 class="step-title">Start Creating</h3>
-        <p class="step-desc">Get hyper-realistic AI renders instantly. Save them to your wardrobe or share them with your customers.</p>
+        <h3 class="step-title">Try On &amp; Own</h3>
+        <p class="step-desc">Virtually try on every look. See how it fits on you. Love it? It's yours.</p>
       </div>
     </div>
   </div>
@@ -207,10 +202,10 @@
     <div class="footer-inner">
       <div class="footer-brand">
         <a href="#" class="footer-logo">
-          <div class="nav-logo-icon"><img src="assets/logo.png" alt="BingeTry Logo"/></div>
+          <div class="nav-logo-icon"><img src="assets/logo_new.png" alt="BingeTry Logo"/></div>
           <span class="nav-logo-text">BingeTry</span>
         </a>
-        <p class="footer-tagline">The Future of Fashion is You.</p>
+        <p class="footer-tagline">Style that understands you.</p>
         <div class="store-btns">
           <a href="https://apps.apple.com/us/app/bingetry/id6767003047" target="_blank" class="store-btn store-btn--sm">
             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
@@ -254,13 +249,11 @@
 
 <script>
 document.addEventListener('DOMContentLoaded', () => {
-  // Mobile menu
   const hamburger = document.getElementById('hamburger');
   const mobileNav = document.getElementById('mobile-nav');
   hamburger.addEventListener('click', () => mobileNav.classList.toggle('open'));
   mobileNav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mobileNav.classList.remove('open')));
 
-  // Smooth scroll
   document.querySelectorAll('a[href^="#"]').forEach(a => {
     a.addEventListener('click', e => {
       e.preventDefault();
@@ -269,7 +262,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Scroll animations
   const obs = new IntersectionObserver((entries) => {
     entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
   }, { threshold: 0.15 });
