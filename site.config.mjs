@@ -1,0 +1,12 @@
+export const SITE_URL = process.env.SITE_URL || 'https://bingetry.com';
+export const SITE_NAME = 'Style BFF';
+export const APP_STORE_URL = 'https://apps.apple.com/app/id6767003047';
+export const PLAY_STORE_URL = 'https://play.google.com/store/apps/details?id=com.bingetry.vitualtryon';
+export const SUPPORT_EMAIL = 'hello@bingetry.com';
+export const APPLE_TEAM_ID = '[FILL_APPLE_TEAM_ID]';
+export const ANDROID_SHA256 = '[FILL_ANDROID_SHA256]';
+export const COLOR_CPP_ID = '';
+export const TRYON_CPP_ID = '';
+export const CLOSET_CPP_ID = '';
+export const ANALYSIS_API_ENDPOINT = '';
+export const LAST_UPDATED = '2026-09-14';

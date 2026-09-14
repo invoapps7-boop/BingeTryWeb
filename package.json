@@ -4,16 +4,16 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview"
-  },
-  "dependencies": {
-
+    "dev": "node scripts/build.mjs && vite dist --host 0.0.0.0",
+    "build": "node scripts/build.mjs",
+    "preview": "vite preview dist --host 0.0.0.0",
+    "check": "npm run build && tsc --noEmit && node scripts/check.mjs && lhci autorun"
   },
   "devDependencies": {
+    "@lhci/cli": "^0.15.1",
     "@types/node": "^22.14.0",
-    
+    "qrcode": "^1.5.4",
+    "schema-dts": "^1.1.5",
     "typescript": "~5.8.2",
     "vite": "^6.2.0"
   }
