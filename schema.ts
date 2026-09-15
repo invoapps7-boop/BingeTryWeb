@@ -3,14 +3,13 @@ import type { Graph, Organization, SoftwareApplication, WebSite } from 'schema-d
 export const organization: Organization = {
   '@type': 'Organization',
   name: 'Style BFF',
-  alternateName: 'BingeTry',
-  url: 'https://bingetry.com/',
+  url: 'https://stylebff.ai/',
 };
 
 export const website: WebSite = {
   '@type': 'WebSite',
   name: 'Style BFF',
-  url: 'https://bingetry.com/',
+  url: 'https://stylebff.ai/',
 };
 
 export const app: SoftwareApplication = {

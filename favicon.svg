@@ -1,1 +1,23 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" rx="20" fill="#09090d"/><path d="M19 13h17c10 0 16 4 16 11 0 5-3 8-8 10 7 1 11 5 11 12 0 9-7 14-19 14H19V13Zm11 8v10h6c4 0 6-2 6-5s-2-5-7-5h-5Zm0 18v13h7c5 0 8-2 8-6 0-5-3-7-9-7h-6Z" fill="#fff"/><path d="M15 50C28 44 30 28 28 16" fill="none" stroke="#ff5f79" stroke-width="3" stroke-linecap="round"/></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <rect width="32" height="32" rx="9" fill="#FD8817"/>
+  <!-- Cat Ears -->
+  <polygon points="5,14 10,4 14,13" fill="#E86E08"/>
+  <polygon points="7,13 10,6 13,12" fill="#FFA596"/>
+  <polygon points="27,14 22,4 18,13" fill="#E86E08"/>
+  <polygon points="25,13 22,6 19,12" fill="#FFA596"/>
+  <!-- Cat Face Head -->
+  <ellipse cx="16" cy="19" rx="12" ry="10" fill="#FF8D21"/>
+  <!-- Inner Mask Cream -->
+  <ellipse cx="16" cy="20" rx="9.5" ry="7.5" fill="#FFE2C4"/>
+  <!-- Eyes -->
+  <ellipse cx="12" cy="18" rx="2.4" ry="3" fill="#181410"/>
+  <circle cx="11.2" cy="16.8" r="0.9" fill="#FFFFFF"/>
+  <ellipse cx="20" cy="18" rx="2.4" ry="3" fill="#181410"/>
+  <circle cx="19.2" cy="16.8" r="0.9" fill="#FFFFFF"/>
+  <!-- Pink Blush Cheeks -->
+  <ellipse cx="9" cy="22" rx="1.8" ry="1.1" fill="#F47F72" opacity="0.8"/>
+  <ellipse cx="23" cy="22" rx="1.8" ry="1.1" fill="#F47F72" opacity="0.8"/>
+  <!-- Nose & Mouth -->
+  <polygon points="16,21 14.8,19.8 17.2,19.8" fill="#F47F72"/>
+  <path d="M14.2,22.2 C15,23.2 16,22.6 16,21.8 C16,22.6 17,23.2 17.8,22.2" fill="none" stroke="#2B201A" stroke-width="0.8" stroke-linecap="round"/>
+</svg>
