@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "node scripts/build.mjs && vite dist --host 0.0.0.0",
     "build": "node scripts/build.mjs",
-    "preview": "vite preview dist --host 0.0.0.0",
+    "preview": "vite preview --outDir dist --host 0.0.0.0",
     "check": "npm run build && tsc --noEmit && node scripts/check.mjs && lhci autorun"
   },
   "devDependencies": {

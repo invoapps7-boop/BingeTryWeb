@@ -1,4 +1,16 @@
 document.addEventListener('DOMContentLoaded',()=>{
+  const legacyHashes = {
+    '#features': '/features/daily-outfits-on-you/',
+    '#style-feed': '/features/daily-outfits-on-you/',
+    '#glow-feed': '/features/daily-outfits-on-you/',
+    '#lookbook': '/features/digital-closet/',
+    '#glowbook': '/features/digital-closet/',
+    '#how-it-works': '/how-it-works/'
+  };
+  if (location.hash && legacyHashes[location.hash]) {
+    location.replace(legacyHashes[location.hash]);
+    return;
+  }
   const button=document.querySelector('.menu-toggle');
   const menu=document.querySelector('#mobile-menu');
   button?.addEventListener('click',()=>{const open=button.getAttribute('aria-expanded')==='true';button.setAttribute('aria-expanded',String(!open));menu.hidden=open});

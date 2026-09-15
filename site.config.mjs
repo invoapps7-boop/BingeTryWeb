@@ -1,4 +1,4 @@
-export const SITE_URL = process.env.SITE_URL || 'https://bingetry.com';
+export const SITE_URL = process.env.SITE_URL || 'https://stylebff.ai';
 export const SITE_NAME = 'Style BFF';
 export const APP_STORE_URL = 'https://apps.apple.com/app/id6767003047';
 export const PLAY_STORE_URL = 'https://play.google.com/store/apps/details?id=com.bingetry.vitualtryon';
