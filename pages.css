@@ -25,6 +25,8 @@
 
 /* ===== STATUS ===== */
 .updated { color: var(--muted); font-size: .82rem; }
+.editorial-meta { color: var(--muted); font-size: .82rem; margin: .5rem 0 1.2rem; }
+.editorial-meta a { color: inherit; text-decoration-color: var(--primary); text-underline-offset: .2em; }
 .status-badge {
   display: inline-flex; margin-bottom: 1rem;
   padding: .35rem .65rem;
