@@ -1103,8 +1103,8 @@ a { color: inherit; }
   .home-v2 .hero-showcase .hero-copy-new h1 { font-size: clamp(3.55rem, 17vw, 5rem); }
   .home-v2 .hero-showcase .hero-world { min-height: 535px; }
   .hero-device-stack { height: 535px; }
-  .hero-device-main { top: 8px; width: 225px; }
-  .hero-device-left { top: 100px; left: -2%; width: 155px; }
-  .hero-device-right { top: 92px; right: -2%; width: 155px; }
+  .hero-device-main { top: 8px; width: 175px; }
+  .hero-device-left { top: 82px; left: 2%; width: 118px; }
+  .hero-device-right { top: 76px; right: 2%; width: 118px; }
   .hero-mockup-note { bottom: 0; }
 }

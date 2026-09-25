@@ -72,9 +72,24 @@ document.addEventListener('DOMContentLoaded',()=>{
     });
   });
 
-  document.querySelectorAll('[data-lottie-src]').forEach(container=>{
-    if(!window.lottie||window.matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+  let lottiePromise;
+  const ensureLottie=()=>{
+    if(window.lottie)return Promise.resolve();
+    if(lottiePromise)return lottiePromise;
+    lottiePromise=new Promise((resolve,reject)=>{
+      const script=document.createElement('script');
+      script.src='/assets/vendor/lottie.min.js';
+      script.onload=resolve;
+      script.onerror=reject;
+      document.head.append(script);
+    });
+    return lottiePromise;
+  };
+  const loadLottie=async container=>{
+    if(container.dataset.loading==='true'||container.dataset.ready==='true'||window.matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+    container.dataset.loading='true';
     try {
+      await ensureLottie();
       const animation=window.lottie.loadAnimation({
         container,
         renderer:'svg',
@@ -87,8 +102,19 @@ document.addEventListener('DOMContentLoaded',()=>{
     } catch(error) {
       console.warn('Mascot animation could not load; using the static fallback.',error);
     }
-  });
+  };
+  const lottieContainers=[...document.querySelectorAll('[data-lottie-src]')];
+  if('IntersectionObserver' in window){
+    const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{
+      if(!entry.isIntersecting)return;
+      loadLottie(entry.target);
+      observer.unobserve(entry.target);
+    }),{rootMargin:'200px'});
+    lottieContainers.forEach(container=>observer.observe(container));
+  }else{
+    lottieContainers.forEach(loadLottie);
+  }
 
   const download=document.querySelector('[data-download-page]');
-  if(download){const params=new URLSearchParams(location.search);const preset=download.dataset.preset||'default';const ppid=download.dataset.ppid||params.get('ppid')||'';const ct=params.get('ct')||params.get('ref')||'';const pt=params.get('pt')||'';const apple=new URL('https://apps.apple.com/app/id6767003047');if(ppid)apple.searchParams.set('ppid',ppid);if(ct)apple.searchParams.set('ct',ct);if(pt)apple.searchParams.set('pt',pt);const play=new URL('https://play.google.com/store/apps/details?id=com.bingetry.vitualtryon');const campaign=[ct&&'utm_campaign='+ct,pt&&'utm_source='+pt,preset!=='default'&&'utm_content='+preset].filter(Boolean).join('&');if(campaign)play.searchParams.set('referrer',campaign);document.querySelectorAll('[data-store="apple"]').forEach(a=>a.href=apple);document.querySelectorAll('[data-store="google"]').forEach(a=>a.href=play);track('Download Page View',{preset});const agent=navigator.userAgent;if(/iPhone|iPad|iPod/i.test(agent)){track('Download Redirect',{store:'apple',preset});setTimeout(()=>location.replace(apple),900)}else if(/Android/i.test(agent)){track('Download Redirect',{store:'google',preset});setTimeout(()=>location.replace(play),900)}else if(download.dataset.redirectDesktop==='true'){location.replace('/download/'+location.search)}}
+  if(download){const params=new URLSearchParams(location.search);const preset=download.dataset.preset||'default';const ppid=download.dataset.ppid||params.get('ppid')||'';const ct=params.get('ct')||params.get('ref')||'';const pt=params.get('pt')||'';const apple=new URL('https://apps.apple.com/app/id6767003047');if(ppid)apple.searchParams.set('ppid',ppid);if(ct)apple.searchParams.set('ct',ct);if(pt)apple.searchParams.set('pt',pt);const play=new URL('https://play.google.com/store/apps/details?id=com.bingetry.vitualtryon');const campaign=[ct&&'utm_campaign='+ct,pt&&'utm_source='+pt,preset!=='default'&&'utm_content='+preset].filter(Boolean).join('&');if(campaign)play.searchParams.set('referrer',campaign);document.querySelectorAll('[data-store="apple"]').forEach(a=>a.href=apple);document.querySelectorAll('[data-store="google"]').forEach(a=>a.href=play);track('Download Page View',{preset});const shouldRedirect=preset!=='default'||download.dataset.redirectMobile==='true';const agent=navigator.userAgent;if(shouldRedirect&&/iPhone|iPad|iPod/i.test(agent)){track('Download Redirect',{store:'apple',preset});setTimeout(()=>location.replace(apple),900)}else if(shouldRedirect&&/Android/i.test(agent)){track('Download Redirect',{store:'google',preset});setTimeout(()=>location.replace(play),900)}else if(download.dataset.redirectDesktop==='true'){location.replace('/download/'+location.search)}}
 });
