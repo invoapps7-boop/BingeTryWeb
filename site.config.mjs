@@ -9,4 +9,4 @@ export const COLOR_CPP_ID = '';
 export const TRYON_CPP_ID = '';
 export const CLOSET_CPP_ID = '';
 export const ANALYSIS_API_ENDPOINT = '';
-export const LAST_UPDATED = '2026-09-17';
+export const LAST_UPDATED = '2026-09-25';

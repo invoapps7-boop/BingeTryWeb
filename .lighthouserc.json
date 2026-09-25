@@ -3,7 +3,15 @@
     "collect": {
       "staticDistDir": "./dist",
       "numberOfRuns": 1,
-      "url": ["http://localhost/", "http://localhost/features/color-analysis/", "http://localhost/bingetry/", "http://localhost/pricing/"]
+      "url": [
+        "http://localhost/",
+        "http://localhost/features/",
+        "http://localhost/features/color-analysis/",
+        "http://localhost/how-it-works/",
+        "http://localhost/compare/",
+        "http://localhost/blog/",
+        "http://localhost/download/"
+      ]
     },
     "assert": {
       "assertions": {

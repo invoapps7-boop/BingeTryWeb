@@ -89,13 +89,19 @@ a { color: inherit; }
 .nav-features summary::-webkit-details-marker { display: none; }
 .nav-menu {
   position: absolute; top: 2rem; left: 50%;
-  display: grid; grid-template-columns: 1fr 1fr; gap: .25rem;
-  width: 400px; padding: .75rem; transform: translateX(-50%);
+  display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .35rem;
+  width: min(620px, 86vw); padding: .7rem; transform: translateX(-50%);
   background: var(--card); border: 1px solid var(--line);
   border-radius: 1rem;
   box-shadow: 0 18px 50px rgba(253, 136, 23, .12);
 }
-.nav-menu a { padding: .7rem; border-radius: .6rem; text-decoration: none; }
+.nav-menu a {
+  display: grid; align-content: start; gap: .18rem; min-width: 0;
+  padding: .8rem .9rem; border-radius: .7rem; text-decoration: none;
+}
+.nav-menu a b { font-size: .82rem; line-height: 1.25; }
+.nav-menu a small { color: var(--secondary); font-size: .68rem; line-height: 1.4; }
+.nav-menu .nav-menu-all { grid-column: 1 / -1; background: var(--butter); }
 .nav-menu a:hover { background: var(--peach); }
 
 /* ===== BUTTONS ===== */
@@ -1103,8 +1109,8 @@ a { color: inherit; }
   .home-v2 .hero-showcase .hero-copy-new h1 { font-size: clamp(3.55rem, 17vw, 5rem); }
   .home-v2 .hero-showcase .hero-world { min-height: 535px; }
   .hero-device-stack { height: 535px; }
-  .hero-device-main { top: 8px; width: 225px; }
-  .hero-device-left { top: 100px; left: -2%; width: 155px; }
-  .hero-device-right { top: 92px; right: -2%; width: 155px; }
+  .hero-device-main { top: 8px; width: 175px; }
+  .hero-device-left { top: 82px; left: 2%; width: 118px; }
+  .hero-device-right { top: 76px; right: 2%; width: 118px; }
   .hero-mockup-note { bottom: 0; }
 }
