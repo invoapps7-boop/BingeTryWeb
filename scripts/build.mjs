@@ -1,4 +1,5 @@
 import { cp, mkdir, readFile, rm, writeFile } from 'node:fs/promises';
+import { createHash } from 'node:crypto';
 import { dirname, join } from 'node:path';
 import QRCode from 'qrcode';
 import {
@@ -9,6 +10,13 @@ import {
 
 const root = new URL('..', import.meta.url).pathname;
 const out = join(root, 'dist');
+const revision = async path => createHash('sha256').update(await readFile(join(root, path))).digest('hex').slice(0, 12);
+const assetUrls = {
+  styles: '/styles.css?v=' + await revision('styles.css'),
+  pages: '/pages.css?v=' + await revision('pages.css'),
+  site: '/site.js?v=' + await revision('site.js'),
+  lottie: '/assets/vendor/lottie.min.js?v=' + await revision('assets/vendor/lottie.min.js')
+};
 const accessed = 'Accessed September 17, 2026';
 const allPaths = new Set(['/']);
 const sitemapGroups = { pages: [], blog: [], answers: [], glossary: [] };
@@ -69,7 +77,7 @@ function head(page) {
   const description = page.description.length > 155 ? page.description.slice(0,152) + '…' : page.description;
   const noindex = page.status === 'outline' ? '<meta name="robots" content="noindex,follow" />' : '';
   const appGatewayRedirect = page.appGateway ? '<script>(()=>{const p=new URLSearchParams(location.search),ct=p.get("ct")||p.get("ref")||"",pt=p.get("pt")||"",a=new URL("' + APP_STORE_URL + '");if(ct)a.searchParams.set("ct",ct);if(pt)a.searchParams.set("pt",pt);const g=new URL("' + PLAY_STORE_URL + '"),c=[ct&&"utm_campaign="+ct,pt&&"utm_source="+pt].filter(Boolean).join("&");if(c)g.searchParams.set("referrer",c);const u=navigator.userAgent;if(/iPhone|iPad|iPod/i.test(u))location.replace(a);else if(/Android/i.test(u))location.replace(g);else location.replace("/download/"+location.search)})()</script>' : '';
-  return '<!doctype html><html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/><title>' + esc(title) + '</title><meta name="description" content="' + esc(description) + '"/><link rel="canonical" href="' + url(page.path) + '"/><link rel="alternate" hreflang="en" href="' + url(page.path) + '"/><link rel="alternate" hreflang="x-default" href="' + url(page.path) + '"/><meta property="og:type" content="website"/><meta property="og:title" content="' + esc(title) + '"/><meta property="og:description" content="' + esc(description) + '"/><meta property="og:url" content="' + url(page.path) + '"/><meta property="og:image" content="' + SITE_URL + '/assets/og-style-bff.png"/><meta name="twitter:card" content="summary_large_image"/><meta name="twitter:title" content="' + esc(title) + '"/><meta name="twitter:description" content="' + esc(description) + '"/><meta name="twitter:image" content="' + SITE_URL + '/assets/og-style-bff.png"/><meta name="apple-itunes-app" content="app-id=6767003047, app-argument=' + url(page.path) + '"/><link rel="alternate" href="android-app://com.bingetry.vitualtryon/https/' + new URL(SITE_URL).hostname + page.path + '"/><link rel="stylesheet" href="/styles.css"/><link rel="stylesheet" href="/pages.css"/><link rel="icon" type="image/svg+xml" href="/favicon.svg"/>' + noindex + appGatewayRedirect + '</head><body>';
+  return '<!doctype html><html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/><title>' + esc(title) + '</title><meta name="description" content="' + esc(description) + '"/><link rel="canonical" href="' + url(page.path) + '"/><link rel="alternate" hreflang="en" href="' + url(page.path) + '"/><link rel="alternate" hreflang="x-default" href="' + url(page.path) + '"/><meta property="og:type" content="website"/><meta property="og:title" content="' + esc(title) + '"/><meta property="og:description" content="' + esc(description) + '"/><meta property="og:url" content="' + url(page.path) + '"/><meta property="og:image" content="' + SITE_URL + '/assets/og-style-bff.png"/><meta name="twitter:card" content="summary_large_image"/><meta name="twitter:title" content="' + esc(title) + '"/><meta name="twitter:description" content="' + esc(description) + '"/><meta name="twitter:image" content="' + SITE_URL + '/assets/og-style-bff.png"/><meta name="apple-itunes-app" content="app-id=6767003047, app-argument=' + url(page.path) + '"/><link rel="alternate" href="android-app://com.bingetry.vitualtryon/https/' + new URL(SITE_URL).hostname + page.path + '"/><link rel="stylesheet" href="' + assetUrls.styles + '"/><link rel="stylesheet" href="' + assetUrls.pages + '"/><link rel="icon" type="image/svg+xml" href="/favicon.svg"/>' + noindex + appGatewayRedirect + '</head><body>';
 }
 
 function cta(page) {
@@ -90,7 +98,7 @@ function pageBody(page) {
   const badge = page.status === 'outline' ? '<span class="status-badge">Editorial outline</span>' : '';
   const editorial = page.editorial && page.status !== 'outline' ? '<p class="editorial-meta">Written and maintained by the Style BFF editorial team · <a href="/editorial-policy/">Editorial standards</a></p>' : '';
   const extra = page.html || '';
-  return nav + '<main id="main"><article class="page-shell"><header class="page-hero"><div><p class="eyebrow">' + esc(page.kicker || page.primaryKeyword || 'Style BFF guide') + '</p>' + badge + '<h1>' + esc(page.h1) + '</h1><p class="answer-first">' + page.answer + '</p><p class="updated">Last updated ' + LAST_UPDATED + '</p>' + editorial + storeButtons(slugify(page.h1)) + '</div>' + image + '</header><div class="article-body">' + (page.cite ? '<aside class="cite-block">' + page.cite + '</aside>' : '') + sectionMarkup(page.sections) + extra + faqMarkup(page.faq) + '</div>' + cta(page) + '</article></main>' + footer + ld(baseGraph(page)) + '<script src="/site.js" defer></script></body></html>';
+  return nav + '<main id="main"><article class="page-shell"><header class="page-hero"><div><p class="eyebrow">' + esc(page.kicker || page.primaryKeyword || 'Style BFF guide') + '</p>' + badge + '<h1>' + esc(page.h1) + '</h1><p class="answer-first">' + page.answer + '</p><p class="updated">Last updated ' + LAST_UPDATED + '</p>' + editorial + storeButtons(slugify(page.h1)) + '</div>' + image + '</header><div class="article-body">' + (page.cite ? '<aside class="cite-block">' + page.cite + '</aside>' : '') + sectionMarkup(page.sections) + extra + faqMarkup(page.faq) + '</div>' + cta(page) + '</article></main>' + footer + ld(baseGraph(page)) + '<script src="' + assetUrls.site + '" defer></script></body></html>';
 }
 
 async function writeRoute(page, group='pages') {
@@ -237,7 +245,11 @@ async function main() {
   await cp(join(root,'favicon.svg'), join(out,'favicon.svg'));
   await writeFile(join(out,'CNAME'), new URL(SITE_URL).hostname + '\n');
   await QRCode.toFile(join(out,'assets','qr-download.png'), SITE_URL+'/download/', {width:336,margin:2,color:{dark:'#09090d',light:'#ffffff'}});
-  const home = await readFile(join(root,'index.html'),'utf8');
+  const home = (await readFile(join(root,'index.html'),'utf8'))
+    .replace('/styles.css"', assetUrls.styles + '"')
+    .replace('/pages.css"', assetUrls.pages + '"')
+    .replace('/assets/vendor/lottie.min.js"', assetUrls.lottie + '"')
+    .replace('/site.js"', assetUrls.site + '"');
   await writeRoute({path:'/',html:home});
 
   for (const f of featurePages) await writeRoute({path:f[0],title:f[1],h1:f[2],primaryKeyword:f[3],description:f[4],answer:'Style BFF (AI personal stylist and virtual try-on app for iOS and Android) includes this feature. '+f[4],image:f[5],imageAlt:f[2]+' in Style BFF',sections:f[6],faq:commonFaq,schema:{'@type':'WebPage','name':f[2]}});
