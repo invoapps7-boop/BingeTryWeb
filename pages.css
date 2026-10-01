@@ -27,6 +27,16 @@
 .updated { color: var(--muted); font-size: .82rem; }
 .editorial-meta { color: var(--muted); font-size: .82rem; margin: .5rem 0 1.2rem; }
 .editorial-meta a { color: inherit; text-decoration-color: var(--primary); text-underline-offset: .2em; }
+.author-bio {
+  display: grid; grid-template-columns: 72px minmax(0, 1fr); gap: 1rem;
+  align-items: center; margin-top: 2.5rem; padding: 1.4rem;
+  border: 1px solid var(--line); border-radius: 1.4rem; background: var(--card);
+}
+.author-bio img { width: 72px; height: 72px; border-radius: 50%; object-fit: cover; }
+.author-bio .eyebrow { margin: 0 0 .25rem; }
+.author-bio h2 { margin: 0 0 .45rem; font: 700 1.25rem var(--display); }
+.author-bio p:last-child { margin: 0; color: var(--secondary); }
+.author-bio a { color: var(--primary); font-weight: 700; }
 .status-badge {
   display: inline-flex; margin-bottom: 1rem;
   padding: .35rem .65rem;
@@ -213,6 +223,8 @@
   .page-cta .qr-placeholder { display: none; }
   .email-form, .search-form { display: grid; }
   .footer-top { grid-template-columns: 1fr 1fr; }
+  .author-bio { grid-template-columns: 52px minmax(0, 1fr); align-items: start; }
+  .author-bio img { width: 52px; height: 52px; }
 }
 
 /* ===== INNER PAGE REFRESH ===== */
