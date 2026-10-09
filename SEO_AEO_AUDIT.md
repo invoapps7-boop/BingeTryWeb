@@ -1,5 +1,15 @@
 # Style BFF SEO + AEO audit
 
+## 2026-10-08 AI visibility follow-up
+
+The 7 October 2026 AI visibility report sampled two India category questions and found that Style BFF was not named, while a named-brand prompt returned “not recognised”. The site now publishes a single, consistent India-focused entity description and two useful, indexable answer pages:
+
+- `/india/` explains what Style BFF is, that it is available on iOS and Android in India, and the documented workflow.
+- `/answers/best-fashion-styling-apps-in-india/` answers the category intent without claiming that Style BFF is universally best.
+- `/answers/wardrobe-management-services-in-india/` distinguishes the app’s AI workflow from human stylists and tailoring services.
+
+The Organization schema now includes the India service area and the product topics it documents. These pages are linked from the global footer so crawlers and readers can discover them without an external backlink. The report also recommends independent coverage and trusted profiles; those cannot be manufactured by on-site code and remain a marketing/PR workstream requiring factual review and outreach.
+
 Audit date: 2026-10-01  
 Production origin: `https://stylebff.ai`  
 Scope: crawl/index controls, canonicals, metadata, structured data, information architecture, answer readiness, trust, feeds, social previews, performance and validation automation.
