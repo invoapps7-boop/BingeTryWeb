@@ -389,6 +389,25 @@
 .feature-directory a > b { color: var(--orange-deep); font-size: 1.35rem; }
 
 .page-hub .article-body { max-width: 1120px; }
+.page-blog-hub > .page-shell > .page-hero { display: none; }
+.page-blog-hub .article-body { padding-top: clamp(3rem, 7vw, 6rem); }
+.blog-index-heading {
+  max-width: 760px;
+  margin: 0 auto clamp(2rem, 5vw, 4rem);
+  text-align: center;
+}
+.blog-index-heading h1 {
+  margin: .45rem 0 .85rem;
+  font: 780 clamp(3rem, 7vw, 6.5rem)/.9 var(--body);
+  letter-spacing: -.07em;
+}
+.blog-index-heading > p:last-child {
+  max-width: 620px;
+  margin: 0 auto;
+  color: var(--secondary);
+  font-size: clamp(1rem, 1.6vw, 1.2rem);
+  line-height: 1.6;
+}
 .page-hub .link-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; }
 .page-hub .link-grid a {
   display: grid; align-content: space-between; min-height: 180px; padding: 1.35rem;
