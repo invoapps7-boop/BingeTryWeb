@@ -406,6 +406,117 @@
 .compare-intro i { color: var(--orange); font-style: normal; font-weight: 900; }
 .page-blog-hub .blog-directory a { min-height: 210px; }
 
+/* Editorial blog treatment: real article cards on the index, quiet reading layout on posts. */
+.page-blog-hub .blog-directory {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.2rem;
+}
+.page-blog-hub .blog-card {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  overflow: hidden;
+  padding: 0;
+  border: 1px solid rgba(24,33,57,.1);
+  border-radius: 1.1rem;
+  background: #fff;
+  color: var(--navy);
+  text-decoration: none;
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+.page-blog-hub .blog-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 18px 38px rgba(24,33,57,.12);
+}
+.page-blog-hub .blog-card > img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+}
+.page-blog-hub .blog-card-copy {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 1.2rem 1.25rem 1.3rem;
+}
+.page-blog-hub .blog-card small {
+  color: var(--orange-deep);
+  font-size: .66rem;
+  font-weight: 850;
+  letter-spacing: .12em;
+}
+.page-blog-hub .blog-card h2 {
+  margin: .65rem 0 .55rem;
+  font-size: clamp(1.1rem, 1.6vw, 1.35rem);
+  line-height: 1.15;
+  letter-spacing: -.035em;
+}
+.page-blog-hub .blog-card p {
+  margin: 0;
+  color: var(--secondary);
+  font-size: .94rem;
+  line-height: 1.55;
+}
+.page-blog-hub .blog-card span {
+  margin-top: auto;
+  padding-top: 1.1rem;
+  color: var(--orange-deep);
+  font-size: .82rem;
+  font-weight: 800;
+}
+.page-blog-hub .blog-card span b { font-size: 1rem; }
+.page-article .blog-article-hero {
+  display: block;
+  max-width: 860px;
+  margin-inline: auto;
+  padding-bottom: 1.5rem;
+  text-align: center;
+}
+.page-article .blog-article-hero .page-hero-copy {
+  max-width: 760px;
+  margin-inline: auto;
+}
+.page-article .blog-article-hero .answer-first { max-width: 680px; margin-inline: auto; }
+.page-article .blog-article-hero .store-buttons { justify-content: center; }
+.blog-article-cover {
+  max-width: 860px;
+  margin: 1.5rem auto 0;
+}
+.blog-article-cover img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: 1.2rem;
+  object-fit: cover;
+}
+.blog-article-cover figcaption {
+  margin-top: .5rem;
+  color: var(--secondary);
+  font-size: .76rem;
+  text-align: center;
+}
+.page-article .blog-article-body {
+  max-width: 760px;
+  margin-inline: auto;
+}
+.page-article .blog-article-body .article-section {
+  padding: 2rem 0;
+}
+.page-article .blog-article-body .article-section h2 {
+  font-size: clamp(1.35rem, 2.4vw, 1.8rem);
+}
+.page-article .blog-article-body .article-section p,
+.page-article .blog-article-body .article-section li {
+  font-size: 1.08rem;
+  line-height: 1.82;
+}
+.page-article .blog-article-body .author-bio {
+  margin-top: 2rem;
+}
+
 .inner-page .cite-block { border: 0; border-radius: 1.25rem; background: #fff0da; font-family: var(--body); font-size: 1rem; }
 .inner-page .table-wrap { border-color: rgba(24,33,57,.1); background: #fff; }
 .inner-page .table-wrap thead { background: #fff0da; }
@@ -439,6 +550,7 @@
   .page-feature .article-section:has(.faq-list), .page-how .article-section:has(.faq-list) { grid-column: auto; }
   .page-feature .faq-list, .page-how .faq-list { grid-template-columns: 1fr; }
   .page-hub .link-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .page-blog-hub .blog-directory { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 
 @media (max-width: 620px) {
@@ -453,6 +565,11 @@
   .page-visual-spark { left: .2rem; top: 8%; }
   .page-hub .link-grid { grid-template-columns: 1fr; }
   .page-hub .link-grid a { min-height: 150px; }
+  .page-blog-hub .blog-directory { grid-template-columns: 1fr; }
+  .page-blog-hub .blog-card h2 { font-size: 1.35rem; }
+  .page-article .blog-article-hero h1 { font-size: clamp(2.7rem, 13vw, 4rem); }
+  .page-article .blog-article-body .article-section p,
+  .page-article .blog-article-body .article-section li { font-size: 1rem; }
   .download-panel { grid-template-columns: 1fr; }
   .download-qr { display: none; }
 }
