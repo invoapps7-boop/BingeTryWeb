@@ -288,7 +288,6 @@
   margin: 0; color: var(--orange-deep);
   font-size: .72rem; letter-spacing: .13em;
 }
-.inner-page .eyebrow::before { content: '✦'; font-size: .9rem; }
 .inner-page .answer-first {
   max-width: 650px; margin: 0 0 1rem;
   color: #65584d; font-size: clamp(1.05rem, 1.7vw, 1.25rem); line-height: 1.55;
@@ -544,7 +543,6 @@
   background: linear-gradient(130deg, #ff7b14, #ff9a36 55%, #ffd0a1);
   color: var(--navy); box-shadow: 0 25px 60px rgba(192,89,15,.15);
 }
-.inner-page .page-cta::after { content: '✦'; position: absolute; right: 21%; top: -1rem; color: rgba(255,255,255,.45); font-size: 8rem; }
 .inner-page .page-cta .eyebrow { color: #6c2b00; }
 .inner-page .page-cta .store-badge { border-color: rgba(255,255,255,.35); }
 
