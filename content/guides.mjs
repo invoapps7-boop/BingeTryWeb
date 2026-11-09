@@ -31,7 +31,7 @@ export const guides = [
       ['Does an AI outfit planner work for men?', 'Most planners work for any wardrobe. Check the app\'s screenshots to see whether its examples match the clothes you wear.']
     ],
     sources: [APP, PLAY],
-    related: ['/features/daily-outfits-on-you/', '/features/digital-closet/', '/blog/what-should-i-wear-today-from-my-closet/', '/blog/ai-stylist-vs-ai-outfit-generator/']
+    related: ['/tools/outfit-generator/', '/features/daily-outfits-on-you/', '/features/digital-closet/', '/blog/what-should-i-wear-today-from-my-closet/', '/blog/ai-stylist-vs-ai-outfit-generator/']
   },
   {
     slug: 'what-colors-look-good-on-me',
@@ -81,7 +81,7 @@ export const guides = [
       ['How long does it take to find your style?', 'Most people see a clear pattern after two to four weeks of collecting and testing. Style keeps changing with your life, so revisit your three words once a year.']
     ],
     sources: [APP],
-    related: ['/how-it-works/', '/quiz/', '/blog/how-to-create-a-capsule-wardrobe-that-feels-like-you/', '/blog/how-to-rebuild-your-style-after-a-life-change/']
+    related: ['/tools/style-archetype-quiz/', '/how-it-works/', '/quiz/', '/blog/how-to-create-a-capsule-wardrobe-that-feels-like-you/', '/blog/how-to-rebuild-your-style-after-a-life-change/']
   },
   {
     slug: 'does-this-outfit-match',
@@ -105,7 +105,7 @@ export const guides = [
       ['Do my shoes have to match my bag?', 'No. They should match the formality level, and ideally share a color with something else in the outfit.']
     ],
     sources: [APP],
-    related: ['/answers/how-do-i-know-if-an-outfit-suits-me/', '/features/virtual-try-on/', '/blog/what-should-i-wear-today-from-my-closet/']
+    related: ['/tools/outfit-generator/', '/answers/how-do-i-know-if-an-outfit-suits-me/', '/features/virtual-try-on/', '/blog/what-should-i-wear-today-from-my-closet/']
   },
   {
     slug: 'how-to-dress-for-your-body-type',
@@ -128,7 +128,7 @@ export const guides = [
       ['Is there a body type calculator for women?', 'A calculator only compares your shoulder, waist and hip measurements, as above. ' + a('/features/body-type/', 'Style BFF\'s body guidance') + ' does this from a photo.']
     ],
     sources: [APP],
-    related: ['/features/body-type/', '/how-it-works/']
+    related: ['/tools/body-shape-calculator/', '/features/body-type/', '/how-it-works/']
   },
   {
     slug: 'how-to-dress-a-pear-body-shape',
@@ -145,7 +145,7 @@ export const guides = [
       ['What to keep simple', 'Very tight, shiny or heavily patterned bottoms and hip-level details (big pockets, belts slung low) draw the eye to the hips. Wear them if you like them, and balance with more detail on top.']
     ],
     faq: [['Can a pear shape wear skinny jeans?', 'Yes. Pair them with a top that has some volume or structure on top, or a longer jacket.'], ['Which necklines suit a pear shape?', 'Boat, square, off-shoulder and wide V necklines visually widen the shoulders.']],
-    related: ['/blog/how-to-dress-for-your-body-type/', '/features/body-type/']
+    related: ['/tools/body-shape-calculator/', '/blog/how-to-dress-for-your-body-type/', '/features/body-type/']
   },
   {
     slug: 'how-to-dress-an-hourglass-body-shape',
@@ -162,7 +162,7 @@ export const guides = [
       ['Easy outfit formulas', ['Wrap top, high-waisted wide-leg trousers, heeled boots.', 'Fitted knit tucked into a midi pencil skirt.', 'Belted trench over a slip dress.']]
     ],
     faq: [['Can an hourglass wear oversized clothes?', 'Yes. Tuck, belt or crop one piece so the waist still shows.'], ['Do high-waisted jeans suit an hourglass?', 'Yes. A high rise sits at the narrowest point and makes the most of a defined waist.']],
-    related: ['/blog/how-to-dress-for-your-body-type/', '/features/body-type/']
+    related: ['/tools/body-shape-calculator/', '/blog/how-to-dress-for-your-body-type/', '/features/body-type/']
   },
   {
     slug: 'how-to-dress-an-apple-body-shape',
@@ -179,7 +179,7 @@ export const guides = [
       ['Easy outfit formulas', ['V-neck tunic, slim trousers, ankle boots.', 'Open long cardigan over a plain tee and straight jeans.', 'Empire-waist dress with a long pendant necklace.']]
     ],
     faq: [['Should an apple shape wear a belt?', 'A belt just under the bust, or a loose belt at the hip, often works better than one at the natural waist.'], ['Which necklines suit an apple shape?', 'V necks, scoop necks and open collars that create a vertical line.']],
-    related: ['/blog/how-to-dress-for-your-body-type/', '/features/body-type/']
+    related: ['/tools/body-shape-calculator/', '/blog/how-to-dress-for-your-body-type/', '/features/body-type/']
   },
   {
     slug: 'how-to-dress-a-rectangle-body-shape',
@@ -195,7 +195,7 @@ export const guides = [
       ['Easy outfit formulas', ['Tailored blazer, straight trousers, loafers, all one color.', 'Peplum top tucked into a full midi skirt.', 'Slip dress with a belted cardigan.']]
     ],
     faq: [['What is the difference between a rectangle and an hourglass?', 'Both have balanced shoulders and hips. An hourglass has a clearly smaller waist; a rectangle does not.'], ['Do belts suit a rectangle shape?', 'Yes, if you want to create a waist. Wide belts over a dress or coat work best.']],
-    related: ['/blog/how-to-dress-for-your-body-type/', '/features/body-type/']
+    related: ['/tools/body-shape-calculator/', '/blog/how-to-dress-for-your-body-type/', '/features/body-type/']
   },
   {
     slug: 'how-to-dress-an-inverted-triangle-body-shape',
@@ -212,7 +212,7 @@ export const guides = [
       ['Easy outfit formulas', ['Dark V-neck knit, light wide-leg trousers, chunky shoes.', 'Plain fitted tee tucked into a printed pleated midi skirt.', 'Halter top with flared jeans.']]
     ],
     faq: [['Should an inverted triangle avoid blazers?', 'No. Pick soft-shouldered or unstructured blazers and wear them open.'], ['Which skirts suit an inverted triangle?', 'A-line, pleated, tiered and full skirts add balance at the hips.']],
-    related: ['/blog/how-to-dress-for-your-body-type/', '/features/body-type/']
+    related: ['/tools/body-shape-calculator/', '/blog/how-to-dress-for-your-body-type/', '/features/body-type/']
   },
   {
     slug: 'what-to-wear-to-a-wedding-as-a-guest',
@@ -229,7 +229,7 @@ export const guides = [
     ],
     tableInSection: table(['Dress code', 'What it usually means'], [['Black tie', 'Floor-length gown or a very formal cocktail dress; tuxedo or dark suit'], ['Formal / black tie optional', 'Long dress, dressy midi or elegant jumpsuit; dark suit and tie'], ['Cocktail / semi-formal', 'Knee-length or midi dress, dressy separates; suit, tie optional'], ['Smart casual / daytime', 'Sundress, skirt and blouse, smart trousers; chinos and a blazer'], ['Traditional (e.g. Indian)', 'Saree, lehenga, anarkali or kurta sets; sherwani or kurta-pajama']]),
     faq: [['Can I wear black to a wedding?', 'For most Western evening weddings, yes. For daytime or some cultural ceremonies, check with the couple or family.'], ['Can I repeat an outfit at weddings?', 'Yes. Change the accessories, shoes and layers to make it feel new.']],
-    related: ['/features/daily-outfits-on-you/', '/blog/what-should-i-wear-today-from-my-closet/']
+    related: ['/tools/outfit-generator/', '/features/daily-outfits-on-you/', '/blog/what-should-i-wear-today-from-my-closet/']
   },
   {
     slug: 'what-to-wear-to-a-job-interview',
@@ -247,6 +247,6 @@ export const guides = [
     ],
     tableInSection: table(['Workplace', 'Safe interview outfit'], [['Corporate (finance, law, consulting)', 'Matching suit or tailored dress with a blazer, leather shoes'], ['Business casual (most offices)', 'Blazer with smart trousers or a skirt, shirt or blouse, loafers'], ['Tech and startups', 'Clean dark jeans or chinos, a good shirt or knit, a light layer, clean sneakers or loafers'], ['Creative industries', 'Smart base with one personal piece: a print, a color or an accessory'], ['Hands-on or retail roles', 'Neat, practical clothes one step smarter than the uniform']]),
     faq: [['Can I wear jeans to an interview?', 'In tech, startups and many creative roles, dark, clean jeans with a blazer or smart top are fine. In corporate roles, choose trousers.'], ['What are business casual outfit ideas for women?', 'A blazer with straight trousers and a blouse, a knit with a midi skirt, or a shirt dress with a belt, each with loafers or low heels.']],
-    related: ['/features/digital-closet/', '/blog/what-should-i-wear-today-from-my-closet/']
+    related: ['/tools/outfit-generator/', '/features/digital-closet/', '/blog/what-should-i-wear-today-from-my-closet/']
   }
 ];
