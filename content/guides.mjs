@@ -2,6 +2,7 @@
 // Style BFF product facts were checked against the live App Store (apps.apple.com/us/app/id6767003047)
 // and Google Play (play.google.com/store/apps/details?id=com.bingetry.vitualtryon) listings on 2026-11-09.
 // Styling guidance is editorial: practical starting points, not rules.
+import { guides2026_11_10 } from './guides-2026-11-10.mjs';
 const a = (href, label) => '<a href="' + href + '">' + label + '</a>';
 const table = (head, rows) => '<div class="table-wrap"><table><thead><tr>' + head.map(h => '<th>' + h + '</th>').join('') + '</tr></thead><tbody>' + rows.map(r => '<tr>' + r.map(c => '<td>' + c + '</td>').join('') + '</tr>').join('') + '</tbody></table></div>';
 const APP = ['Style BFF on the App Store', 'https://apps.apple.com/us/app/id6767003047'];
@@ -55,7 +56,7 @@ export const guides = [
       ['What colors suit neutral undertones?', 'Neutral undertones usually suit medium-intensity colors such as teal, jade, soft white and dusty rose, and can borrow from both warm and cool palettes.']
     ],
     sources: [APP],
-    related: ['/features/color-analysis/', '/quiz/', '/blog/seasonal-color-analysis-explained/', '/glossary/undertone/']
+    related: ['/features/color-analysis/', '/quiz/', '/blog/seasonal-color-analysis-explained/', '/glossary/undertone/', '/blog/what-colors-look-good-on-brown-skin/', '/blog/best-free-color-analysis-apps/']
   },
   {
     slug: 'how-to-find-your-style',
@@ -250,3 +251,5 @@ export const guides = [
     related: ['/tools/outfit-generator/', '/features/digital-closet/', '/blog/what-should-i-wear-today-from-my-closet/']
   }
 ];
+
+guides.push(...guides2026_11_10);
