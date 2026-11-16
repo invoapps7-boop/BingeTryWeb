@@ -7,7 +7,7 @@ const seasonLabel = slug => slug.split('-').map(w => w[0].toUpperCase() + w.slic
 const table = (head, rows) => '<div class="table-wrap"><table><thead><tr>' + head.map(h => '<th>' + h + '</th>').join('') + '</tr></thead><tbody>' + rows.map(r => '<tr>' + r.map(c => '<td>' + c + '</td>').join('') + '</tr>').join('') + '</tbody></table></div>';
 const webApp = (name, url) => ({ '@type': 'WebApplication', name, url, applicationCategory: 'LifestyleApplication', operatingSystem: 'Any (web browser)', isAccessibleForFree: true, offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' }, publisher: { '@id': 'https://stylebff.ai/#organization' } });
 
-export function toolsKit({ esc, scriptUrl }) {
+export function toolsKit({ esc, scriptUrl, author }) {
   const data = {
     shapes, archetypes, quiz: archetypeQuiz, occasions, weather,
     seasons: Object.fromEntries(Object.entries(seasonContent).map(([k, v]) => [k, { best: v.best, neutrals: v.neutrals, avoid: v.avoid }]))
@@ -90,7 +90,7 @@ export function toolsKit({ esc, scriptUrl }) {
         ['Other style archetypes', archLinks(slug)]
       ],
       faq: [['How do I know if I am ' + a.name + '?', 'Take the free <a href="/tools/style-archetype-quiz/">style archetype quiz</a>. If ' + a.words + ' describes the outfits you feel best in, this is likely your main archetype.'], ['Can I mix archetypes?', 'Yes. Most people have a main archetype and a second one. Use the second for one piece per outfit.']],
-      schema: { '@type': 'Article', headline: 'The ' + name + ' style archetype', author: { '@type': 'Organization', name: 'Style BFF editorial team' } }
+      schema: { '@type': 'Article', headline: 'The ' + name + ' style archetype', author }
     });
   }
 
