@@ -74,7 +74,9 @@ for (const file of htmlFiles) {
       errors.push(route+': invalid JSON-LD');
     }
   }
-  for (const word of ['revolutionary','seamless','unleash','empower','effortless','AI-powered']) if (new RegExp('\\b'+word+'\\b','i').test(html)) errors.push(route+': banned word '+word);
+  // Legal pages are copied verbatim from the published policies, so the marketing-copy word list does not apply.
+  const verbatimLegal = route === '/privacy/' || route === '/terms/';
+  if (!verbatimLegal) for (const word of ['revolutionary','seamless','unleash','empower','effortless','AI-powered']) if (new RegExp('\\b'+word+'\\b','i').test(html)) errors.push(route+': banned word '+word);
   const outgoing = new Set();
   for (const match of html.matchAll(/href="(\/[^"#]*)"/g)) {
     const href = match[1].split(/[?#]/)[0];
