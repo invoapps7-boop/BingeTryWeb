@@ -53,7 +53,7 @@ for (const file of htmlFiles) {
     const src = tag.match(/src="([^"]+)"/)?.[1] || '';
     if (!/\balt="[^"]*"/.test(tag)) errors.push(route+': image missing alt attribute: '+src);
     if (!/\bwidth="\d+"/.test(tag) || !/\bheight="\d+"/.test(tag)) errors.push(route+': image missing intrinsic dimensions: '+src);
-    if (src && !src.endsWith('.webp') && src !== '/assets/qr-download.png') errors.push(route+': non-WebP content image: '+src);
+    if (src && !src.endsWith('.webp') && src !== '/assets/qr-download.png' && !/^https:\/\/images\.unsplash\.com\/photo-[^"]*fm=webp/.test(src)) errors.push(route+': non-WebP content image: '+src);
   }
 
   if (!noindex && route !== '/404.html') {

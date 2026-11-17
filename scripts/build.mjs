@@ -14,6 +14,7 @@ import { extraComparisonEvidence, seasonalGuide } from '../content/pages.mjs';
 import { listicles } from '../content/listicles.mjs';
 import { guides, guidePublished } from '../content/guides.mjs';
 import { toolsKit } from './tools-pages.mjs';
+import { mediumArticle, mediumHub, mediumMore, readMinutes, slugOf } from './medium.mjs';
 
 const root = new URL('..', import.meta.url).pathname;
 const out = join(root, 'dist');
@@ -32,6 +33,7 @@ const assetUrls = {
 const reviewedDate = new Intl.DateTimeFormat('en-US', {month:'long',day:'numeric',year:'numeric',timeZone:'UTC'}).format(new Date(LAST_UPDATED+'T00:00:00Z'));
 const accessed = 'Accessed ' + reviewedDate;
 const allPaths = new Set(['/']);
+const blogMeta = [];
 const sitemapGroups = { pages: [], blog: [], answers: [], glossary: [] };
 const rssItems = [];
 
@@ -203,6 +205,10 @@ function blogImage(slug='') {
 }
 
 function pageBody(page) {
+  const mediumCtx = () => ({esc, storeButtons, sectionMarkup, faqMarkup, trim: trimDescription, AUTHOR_PATH, LAST_UPDATED, canonical: url(page.canonicalPath || page.path)});
+  const tail = footer + ld(baseGraph(page)) + '<script src="' + assetUrls.site + '" defer></script></body></html>';
+  if (page.layout === 'medium-hub') return nav + page.html + tail;
+  if (page.path.startsWith('/blog/') && page.path !== '/blog/' && !page.redirectTo) return nav + mediumArticle(page, mediumCtx()) + tail;
   const isBlogArticle = page.path.startsWith('/blog/') && page.path !== '/blog/';
   const image = isBlogArticle ? '<figure class="blog-article-cover"><img src="' + blogImage(page.path) + '" alt="' + esc(page.h1) + ' editorial photograph" width="1200" height="675" fetchpriority="high"/><figcaption>Style BFF editorial guide</figcaption></figure>' : pageVisual(page);
   const badge = page.status === 'outline' ? '<span class="status-badge">Editorial outline</span>' : '';
@@ -224,6 +230,10 @@ async function writeRoute(page, group='pages') {
   await mkdir(dirname(file), {recursive:true});
   await writeFile(file, renderedPage.path === '/' ? renderedPage.html : head(renderedPage) + pageBody(renderedPage), 'utf8');
   allPaths.add(renderedPage.path);
+  if (group === 'blog' && renderedPage.path !== '/blog/' && !renderedPage.redirectTo && renderedPage.status !== 'outline' && !renderedPage.noindex) {
+    const body = (await readFile(file, 'utf8')).split('<div class="md-body">')[1]?.split('<!--/md-body-->')[0] || '';
+    blogMeta.push({path:renderedPage.path, h1:renderedPage.h1, answer:renderedPage.answer.replace(/<[^>]+>/g,''), date:renderedPage.datePublished || renderedPage.lastModified || LAST_UPDATED, minutes:readMinutes(body)});
+  }
   const isIndexable = renderedPage.status !== 'outline' && !renderedPage.noindex;
   if (isIndexable && !renderedPage.noSitemap) sitemapGroups[group].push({path:renderedPage.path,lastModified:renderedPage.lastModified || LAST_UPDATED});
   if (isIndexable && group === 'blog' && renderedPage.schema?.['@type'] === 'BlogPosting') rssItems.push({path:renderedPage.path,title:renderedPage.h1,description:renderedPage.description});
@@ -437,7 +447,7 @@ async function main() {
     await writeRoute({path:'/answers/'+answerSlug+'/',title:(q.replace('?','')+' | Style BFF').slice(0,60),h1:q,primaryKeyword:q.toLowerCase().replace('?',''),description:trimDescription(answer.replace(/<[^>]+>/g,'')),answer,sections:content ? [...content.sections, ...(content.sources ? [['Sources', content.sources.map(([label,href])=>source(label,href,AUDIT_UPDATED))]] : []), ['Related answers', reviewedQuestions.filter(x=>x!==q).slice((i%5)*2,(i%5)*2+4).map(x=>'<a href="/answers/'+slugify(x)+'/">'+esc(x)+'</a>')]] : [['What should you read next?',['<a href="/features/virtual-try-on/">Virtual try-on</a>','<a href="/compare/">Compare AI stylist apps</a>']]],status:(reviewedAnswerSlugs.has(answerSlug) || content) ? 'published' : 'outline',lastModified:content ? AUDIT_UPDATED : undefined,schema:{'@type':'Article','headline':q,'author':AUTHOR,'publisher':{'@id':ORGANIZATION_ID}}},'answers');
   }
 
-  await writeRoute({path:'/blog/',title:'AI Styling Guides | Style BFF',h1:'Style notes for real life',primaryKeyword:'ai styling guides',description:'Read practical Style BFF guides about personal styling, digital wardrobes, color, outfit planning, virtual try-on, and smarter shopping.',answer:'Short, useful guides for getting more from your wardrobe, trying new directions without the guesswork and making fewer regret purchases.',sections:[],html:'<header class="blog-index-heading"><p class="eyebrow">Tips &amp; guides</p><h1>Style notes for real life</h1><p>Useful ideas for getting dressed, planning outfits and making more of the clothes already in your life.</p></header><div class="blog-filter-row"><span>WARDROBE</span><span>PERSONAL STYLE</span><span>TRY-ON</span><span>SMARTER SHOPPING</span></div><div class="blog-directory">'+blogPosts.filter(post=>!consolidated['/blog/'+post[0]+'/']).map((post,i)=>'<a class="blog-card" href="/blog/'+post[0]+'/"><img src="'+blogImage(post[0])+'" alt="'+esc(post[1])+'" width="640" height="360" loading="lazy" decoding="async"/><div class="blog-card-copy"><small>'+(i<9?'0':'')+(i+1)+' · STYLE NOTE</small><h2>'+esc(post[1])+'</h2><p>'+esc(trimDescription(post[3],150))+'</p><span>Read guide <b aria-hidden="true">↗</b></span></div></a>').join('')+guides.map((g,i)=>'<a class="blog-card" href="/blog/'+g.slug+'/"><img src="'+blogImage(g.slug)+'" alt="'+esc(g.h1)+'" width="640" height="360" loading="lazy" decoding="async"/><div class="blog-card-copy"><small>NEW · STYLE GUIDE</small><h2>'+esc(g.h1)+'</h2><p>'+esc(trimDescription(g.answer,150))+'</p><span>Read guide <b aria-hidden="true">↗</b></span></div></a>').join('')+'</div>',schema:{'@type':'Blog','name':'The Style BFF blog'}},'blog');
+  // /blog/ index is written after every post (see the Medium hub below).
   await writeRoute({path:'/blog/seasonal-color-analysis-explained/',title:'Seasonal Color Analysis Guide | Style BFF',h1:'Seasonal color analysis, explained: all 12 seasons',primaryKeyword:'seasonal color analysis',description:trimDescription(seasonalGuide.answer),answer:seasonalGuide.answer,sections:seasonalGuide.sections,faq:seasonalGuide.faq,status:'published',lastModified:AUDIT_UPDATED,schema:{'@type':'BlogPosting','headline':'Seasonal color analysis, explained: all 12 seasons','dateModified':AUDIT_UPDATED,'author':AUTHOR}},'blog');
   for (const [slug,h1,keyword,answer,headingOne,bodyOne,headingTwo,bodyTwo,sourceHtml] of blogPosts) {
     if (consolidated['/blog/'+slug+'/']) { await writeRedirect('/blog/'+slug+'/', consolidated['/blog/'+slug+'/'], h1); continue; }
@@ -451,6 +461,13 @@ async function main() {
     const sections = g.sections.map(([h,body]) => [h, body === '__TABLE__' ? g.tableInSection : body]);
     const related = (g.related || []).map(p=>'<a href="'+p+'">'+esc(guideTitle(p))+'</a>');
     await writeRoute({path:'/blog/'+g.slug+'/',title:g.title+' | Style BFF',h1:g.h1,primaryKeyword:g.keyword,description:trimDescription(g.answer),answer:g.answer,sections:[...sections,...(g.sources?[['Sources',g.sources.map(([label,href])=>source(label,href,g.published||guidePublished))]]:[]),...(related.length?[['Related guides',related]]:[])],html:g.html || '',htmlFirst:!!g.html,faq:g.faq,status:'published',lastModified:(g.published||guidePublished),datePublished:(g.published||guidePublished),schema:{'@type':'BlogPosting','headline':g.h1,'datePublished':(g.published||guidePublished),'dateModified':(g.published||guidePublished),'author':AUTHOR}},'blog');
+  }
+  blogMeta.sort((a,b)=>b.date.localeCompare(a.date) || a.h1.localeCompare(b.h1));
+  const mediumHubCtx = {esc, trim: trimDescription, AUTHOR_PATH};
+  await writeRoute({path:'/blog/',title:'Style Notes: Guides on Color, Fit and Outfits | Style BFF',h1:'Style notes',primaryKeyword:'ai styling guides',description:'Practical Style BFF guides on color analysis, dressing for your body shape, outfits for real occasions, digital wardrobes and virtual try-on.',answer:'Practical guides on color, proportion, outfits and the clothes you already own.',sections:[],layout:'medium-hub',html:mediumHub(blogMeta, mediumHubCtx),schema:{'@type':'Blog','name':'Style notes by Style BFF','author':AUTHOR}},'blog');
+  for (const item of blogMeta) {
+    const f = join(out, item.path.replace(/^\/|\/$/g,''), 'index.html');
+    await writeFile(f, (await readFile(f,'utf8')).replace('<!--MORE_FROM-->', mediumMore(item, blogMeta, mediumHubCtx)), 'utf8');
   }
   await writeRoute({path:'/glossary/',title:'Personal Styling Glossary | Style BFF',h1:'The personal styling glossary',primaryKeyword:'personal styling terms',description:'Look up clear definitions for color seasons, Kibbe types, undertone, chroma, capsule wardrobes, cost per wear, and virtual try-on.',answer:'Plain-English definitions of the terms used in color analysis, body proportion, wardrobes and virtual try-on.',html:'<div class="link-grid">'+glossary.map(term=>'<a href="/glossary/'+slugify(term)+'/">'+esc(term)+' <span>↗</span></a>').join('')+'</div>',sections:[['How should you use this glossary?','Read the one-sentence definition first, then follow the related feature and answer pages for practical detail.']],schema:{'@type':'DefinedTermSet','name':'Style BFF personal styling glossary'}},'glossary');
   for (const term of glossary) {
