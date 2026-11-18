@@ -1109,3 +1109,22 @@ body.page-tool, body:has(.tl-main) { background: #FBF6EF; }
 .inner-page .st-head h1 { margin: 0; font: 800 clamp(1.9rem, 4.4vw, 3rem)/1.08 var(--body); letter-spacing: -.035em; color: var(--ink); }
 .inner-page .st-intro { margin: .9rem 0 0; font-size: clamp(1rem, 1.8vw, 1.12rem); line-height: 1.6; color: #5F574F; }
 @media (max-width: 860px) { .st-meta { display: grid; grid-template-columns: 1fr 1fr; gap: .8rem 1rem; width: 100%; } .st-meta div:nth-child(2) { grid-column: 1 / -1; order: 3; } }
+
+/* Text-only page hero (pages without an app screenshot; replaces the STYLE/BFF mascot circle) */
+.inner-page .page-hero.is-text { grid-template-columns: minmax(0, 1fr); min-height: 0; padding: clamp(2.2rem, 5vw, 4.2rem); }
+.inner-page .page-hero.is-text::before { display: none; }
+.inner-page .page-hero.is-text h1 { max-width: 920px; font-size: clamp(2.5rem, 5.2vw, 4.4rem); line-height: .98; letter-spacing: -.055em; }
+.inner-page .page-hero.is-text .answer-first { max-width: 780px; }
+
+/* Compare hub */
+.cmp-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1rem; margin: 0 0 1rem; grid-column: 1 / -1; }
+.cmp-card { display: flex; flex-direction: column; gap: .6rem; padding: 1.3rem 1.4rem; border: 1px solid #EADFD1; border-radius: 18px; background: #fff; color: var(--ink); text-decoration: none; transition: transform .15s ease, box-shadow .15s ease, border-color .15s ease; }
+.cmp-card:hover { transform: translateY(-2px); border-color: #E3CFB6; box-shadow: 0 12px 28px rgba(24, 20, 16, .08); }
+.cmp-vs { display: flex; flex-wrap: wrap; align-items: center; gap: .5rem; font-weight: 800; font-size: 1.15rem; letter-spacing: -.01em; }
+.cmp-vs i { padding: .18rem .5rem; border-radius: 999px; background: #FFF1E2; color: #B54D07; font-style: normal; font-size: .7rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
+.cmp-text { color: #5F574F; font-size: .95rem; line-height: 1.5; }
+.cmp-cta { margin-top: auto; color: #B54D07; font-weight: 700; font-size: .92rem; }
+.inner-page .cmp-h2 { grid-column: 1 / -1; margin: 1.6rem 0 .8rem; font: 800 clamp(1.35rem, 3vw, 1.75rem)/1.2 var(--body); letter-spacing: -.02em; }
+.cmp-links { grid-column: 1 / -1; display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: .55rem 1.4rem; margin: 0 0 1rem; padding: 0; list-style: none; }
+.cmp-links a { color: var(--ink); font-weight: 600; line-height: 1.4; text-decoration: underline; text-decoration-color: #FD8817; text-underline-offset: 3px; }
+.cmp-links a:hover { color: #B54D07; }
