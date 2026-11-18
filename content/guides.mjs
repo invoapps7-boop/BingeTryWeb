@@ -3,6 +3,7 @@
 // and Google Play (play.google.com/store/apps/details?id=com.bingetry.vitualtryon) listings on 2026-11-09.
 // Styling guidance is editorial: practical starting points, not rules.
 import { guides2026_11_10 } from './guides-2026-11-10.mjs';
+import { guides2026_11_18 } from './guides-2026-11-18.mjs';
 const a = (href, label) => '<a href="' + href + '">' + label + '</a>';
 const table = (head, rows) => '<div class="table-wrap"><table><thead><tr>' + head.map(h => '<th>' + h + '</th>').join('') + '</tr></thead><tbody>' + rows.map(r => '<tr>' + r.map(c => '<td>' + c + '</td>').join('') + '</tr>').join('') + '</tbody></table></div>';
 const APP = ['Style BFF on the App Store', 'https://apps.apple.com/us/app/id6767003047'];
@@ -56,7 +57,7 @@ export const guides = [
       ['What colors suit neutral undertones?', 'Neutral undertones usually suit medium-intensity colors such as teal, jade, soft white and dusty rose, and can borrow from both warm and cool palettes.']
     ],
     sources: [APP],
-    related: ['/features/color-analysis/', '/quiz/', '/blog/seasonal-color-analysis-explained/', '/glossary/undertone/', '/blog/what-colors-look-good-on-brown-skin/', '/blog/best-free-color-analysis-apps/']
+    related: ['/features/color-analysis/', '/quiz/', '/blog/seasonal-color-analysis-explained/', '/blog/colors-that-make-you-look-younger/', '/glossary/undertone/', '/blog/what-colors-look-good-on-brown-skin/', '/blog/best-free-color-analysis-apps/']
   },
   {
     slug: 'how-to-find-your-style',
@@ -82,7 +83,7 @@ export const guides = [
       ['How long does it take to find your style?', 'Most people see a clear pattern after two to four weeks of collecting and testing. Style keeps changing with your life, so revisit your three words once a year.']
     ],
     sources: [APP],
-    related: ['/tools/style-archetype-quiz/', '/how-it-works/', '/quiz/', '/blog/how-to-create-a-capsule-wardrobe-that-feels-like-you/', '/blog/how-to-rebuild-your-style-after-a-life-change/']
+    related: ['/tools/style-archetype-quiz/', '/how-it-works/', '/quiz/', '/blog/how-to-look-good-every-day/', '/blog/how-to-create-a-capsule-wardrobe-that-feels-like-you/', '/blog/how-to-rebuild-your-style-after-a-life-change/']
   },
   {
     slug: 'does-this-outfit-match',
@@ -129,7 +130,7 @@ export const guides = [
       ['Is there a body type calculator for women?', 'A calculator only compares your shoulder, waist and hip measurements, as above. ' + a('/features/body-type/', 'Style BFF\'s body guidance') + ' does this from a photo.']
     ],
     sources: [APP],
-    related: ['/tools/body-shape-calculator/', '/features/body-type/', '/how-it-works/']
+    related: ['/tools/body-shape-calculator/', '/features/body-type/', '/how-it-works/', '/blog/how-to-dress-to-look-younger/']
   },
   {
     slug: 'how-to-dress-a-pear-body-shape',
@@ -253,3 +254,4 @@ export const guides = [
 ];
 
 guides.push(...guides2026_11_10);
+guides.push(...guides2026_11_18);

@@ -27,7 +27,7 @@ export function topicFor(slug) {
   if (/body|shape/.test(slug)) return ['body', 'Body shape'];
   if (/wedding|interview|date|concert|pack|today/.test(slug)) return ['occasions', 'Occasions'];
   if (/try-on|pinterest|instagram|show-me|store-link/.test(slug)) return ['tryon', 'Virtual try-on'];
-  if (/find-your-style|rebuild|match/.test(slug)) return ['style', 'Personal style'];
+  if (/find-your-style|rebuild|match|look-younger|look-good|attractive|put-together|look-expensive/.test(slug)) return ['style', 'Personal style'];
   return ['wardrobe', 'Wardrobe'];
 }
 
