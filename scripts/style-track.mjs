@@ -20,7 +20,7 @@ const STEPS = [
   { key: 'confident', status: 'Delivered', title: 'The confident you', text: 'Dressed, sure of it and out the door.', details: ['Restyle, save or share the look.', 'Fill a genuine wardrobe gap only when it earns its place.'] }
 ];
 
-export function styleTrackHtml() {
+export function styleTrackHtml({ heading = 'From clueless to confident, tracked', tag = 'h2', intro = '' } = {}) {
   const steps = STEPS.map((s, i) => '<li class="st-step st-' + s.key + '" style="--i:' + i + '">'
     + '<span class="st-node">' + ICONS[s.key] + '</span>'
     + '<div class="st-copy"><p class="st-status">' + CHECK + '<span>' + s.status + '</span></p><h3>' + s.title + '</h3><p class="st-text">' + s.text + '</p>'
@@ -28,7 +28,7 @@ export function styleTrackHtml() {
     + (i === STEPS.length - 1 ? '<span class="st-confetti" aria-hidden="true">' + '<i></i>'.repeat(10) + '</span>' : '')
     + '</div></li>').join('');
   return '<section class="st" data-style-track aria-labelledby="st-title"><div class="st-card">'
-    + '<header class="st-head"><div><p class="st-kicker"><span class="st-live" aria-hidden="true"></span>Style tracking</p><h2 id="st-title">From clueless to confident, tracked</h2></div>'
+    + '<header class="st-head"><div class="st-head-copy"><p class="st-kicker"><span class="st-live" aria-hidden="true"></span>Style tracking</p><' + tag + ' id="st-title">' + heading + '</' + tag + '>' + (intro ? '<p class="st-intro">' + intro + '</p>' : '') + '</div>'
     + '<dl class="st-meta"><div><dt>Tracking ID</dt><dd class="st-mono">BFF-YOU-0001</dd></div><div><dt>Delivery window</dt><dd>Before you leave the house</dd></div><div><dt>Status</dt><dd><span class="st-pill"><span class="st-pill-way">On the way</span><span class="st-pill-done">' + CHECK + 'Delivered</span></span></dd></div></dl></header>'
     + '<div class="st-body"><span class="st-rider" aria-hidden="true"><img src="/assets/mascot-small.webp" alt="" width="30" height="30" loading="lazy" decoding="async"></span><ol class="st-steps">' + steps + '</ol></div>'
     + '<footer class="st-foot"><p class="st-sign"><span>Signed for by</span><b>You</b></p><p class="st-box"><b>In the box:</b> your colors, your proportions, your own closet and today’s outfit, on your photo.</p><a class="button" href="/download/">Start your free Style Profile</a></footer>'
