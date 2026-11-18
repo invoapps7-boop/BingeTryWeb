@@ -81,7 +81,7 @@
     const score = Object.fromEntries(Object.keys(D.archetypes).map(k => [k, 0]));
     let answered = 0;
     D.quiz.forEach(([id, , opts]) => { const v = f.get(id); if (v !== null) { answered++; opts[+v][1].forEach(a => score[a]++); } });
-    if (answered < D.quiz.length) { $('#archetype-error').textContent = 'Answer all ' + D.quiz.length + ' questions to see your archetype (' + answered + ' done).'; return; }
+    if (answered < D.quiz.length) { archForm.querySelector('.tool-error').textContent = 'Answer all ' + D.quiz.length + ' questions to see your archetype (' + answered + ' done).'; return; }
     const ranked = Object.entries(score).sort((a, b) => b[1] - a[1]);
     const [first, second] = [ranked[0][0], ranked[1][1] > 0 ? ranked[1][0] : NEIGHBOR[ranked[0][0]]];
     save({ archetype: first, archetype2: second });
@@ -180,5 +180,104 @@
         try { await navigator.clipboard.writeText(url); ev.target.textContent = 'Link copied'; } catch (e) { prompt('Copy your Blueprint link', url); }
       }
     });
+  }
+
+  // ---------- Quiz stepper: one question at a time, with progress (forms marked data-stepper) ----------
+  document.querySelectorAll('form[data-stepper]').forEach(form => {
+    const sets = [...form.querySelectorAll('fieldset')];
+    if (sets.length < 2) return;
+    form.classList.add('is-stepper');
+    const head = document.createElement('div');
+    head.className = 'tl-qhead';
+    head.innerHTML = '<div class="tl-qmeta"><span data-q-count></span><span data-q-pct></span></div><div class="tl-qbar"><i></i></div>';
+    const label = form.querySelector('.tl-quiz-label');
+    if (label) label.after(head); else form.prepend(head);
+    const nav = document.createElement('div');
+    nav.className = 'tl-qnav';
+    nav.innerHTML = '<button type="button" class="tl-qbtn" data-q-back>← Back</button><button type="button" class="tl-qbtn tl-qnext" data-q-next>Next →</button>';
+    const actions = form.querySelector('.tl-quiz-actions');
+    actions.before(nav);
+    const submit = actions.querySelector('[type=submit]');
+    let i = 0, viaKeys = false;
+    const answered = () => sets.filter(s => s.querySelector('input:checked')).length;
+    const show = n => {
+      i = Math.max(0, Math.min(n, sets.length - 1));
+      sets.forEach((s, k) => { s.hidden = k !== i; });
+      const pct = Math.round(answered() / sets.length * 100);
+      head.querySelector('[data-q-count]').textContent = 'Question ' + (i + 1) + ' of ' + sets.length;
+      head.querySelector('[data-q-pct]').textContent = pct + '%';
+      head.querySelector('i').style.width = pct + '%';
+      nav.querySelector('[data-q-back]').disabled = i === 0;
+      const last = i === sets.length - 1;
+      nav.querySelector('[data-q-next]').hidden = last;
+      nav.querySelector('[data-q-next]').disabled = !sets[i].querySelector('input:checked');
+      actions.hidden = !(last && answered() === sets.length);
+    };
+    const finish = () => { actions.hidden = false; if (form.requestSubmit) form.requestSubmit(); else submit.click(); };
+    const advance = () => { if (!sets[i].querySelector('input:checked')) return; if (i < sets.length - 1) { show(i + 1); sets[i].querySelector('input')?.focus({ preventScroll: true }); } else if (answered() === sets.length) finish(); };
+    form.addEventListener('keydown', e => { if (/^Arrow/.test(e.key)) viaKeys = true; if (e.key === 'Enter' && e.target.matches('input[type=radio]')) { e.preventDefault(); advance(); } });
+    form.addEventListener('change', e => {
+      if (!e.target.matches('input[type=radio]')) return;
+      show(i);
+      if (viaKeys) { viaKeys = false; return; }
+      setTimeout(advance, 220);
+    });
+    nav.addEventListener('click', e => { if (e.target.closest('[data-q-back]')) show(i - 1); if (e.target.closest('[data-q-next]')) advance(); });
+    form.addEventListener('reset', () => setTimeout(() => show(0)));
+    show(0);
+  });
+
+  // ---------- Archetype quiz (12 archetypes) ----------
+  const a12 = $('#arch12-quiz');
+  if (a12 && D.arch12) {
+    const out = $('#arch12-result');
+    const nameOnly = n => n.replace(/^The /, '');
+    const render = (key, scores) => {
+      const A = D.arch12[key];
+      const style = D.archetypes[A.style];
+      const top = scores ? Math.max(...Object.values(scores)) : 0;
+      const also = scores ? Object.entries(scores).filter(([k, v]) => k !== key && v >= top - 1 && v >= 4).sort((x, y) => y[1] - x[1]).slice(0, 2).map(([k]) => D.arch12[k].name.replace(/^The /, 'the ')) : [];
+      out.innerHTML = '<div class="tl-result" id="your-archetype"><p class="tl-result-kicker">' + (scores ? 'Your archetype' : 'Shared result') + '</p><h2>' + esc(A.name) + '</h2>' +
+        '<p class="tl-result-desire"><b>Core desire:</b> ' + esc(A.desire) + '</p>' +
+        (also.length ? '<p class="tl-result-also">You also scored highly as ' + esc(also.join(' and ')) + '.</p>' : '') +
+        '<h3>How ' + esc(A.name.replace(/^The /, 'the ')) + ' dresses</h3><p>' + esc(A.dress) + '</p><ul class="tl-pieces">' + A.pieces.map(p => '<li>' + esc(p) + '</li>').join('') + '</ul>' +
+        '<p class="tl-result-style">Your style match: <a href="/tools/style-archetype-quiz/' + A.style + '/"><b>' + esc(nameOnly(style.name)) + '</b></a>, ' + esc(style.words) + '.</p>' +
+        '<div class="tl-result-actions"><a class="button" href="/tools/style-archetype-quiz/' + A.style + '/">See ' + esc(nameOnly(style.name)) + ' outfits</a><button class="button button-quiet" type="button" data-a12-save>Add ' + esc(nameOnly(style.name)) + ' to my Style Blueprint</button><button class="tl-link" type="button" data-a12-retake>Retake the quiz</button></div>' +
+        '<p class="tl-result-note">The style match is Style BFF’s editorial suggestion. This is a reflection tool, not a validated personality test.</p></div>';
+      out.querySelector('[data-a12-save]').addEventListener('click', ev => { save({ archetype: A.style, archetype2: NEIGHBOR[A.style], jung: key }); ev.target.outerHTML = '<span class="tool-saved">Saved to your Style Blueprint.</span>'; });
+      out.querySelector('[data-a12-retake]').addEventListener('click', () => { a12.reset(); a12.hidden = false; out.innerHTML = ''; history.replaceState(null, '', location.pathname); a12.scrollIntoView({ behavior: 'smooth', block: 'center' }); });
+    };
+    a12.addEventListener('submit', e => {
+      e.preventDefault();
+      const f = new FormData(a12);
+      const scores = {};
+      let n = 0;
+      D.statements.forEach(([k]) => { const v = f.get('a-' + k); if (v !== null) { n++; scores[k] = +v; } });
+      if (n < D.statements.length) { a12.querySelector('.tool-error').textContent = 'Answer all ' + D.statements.length + ' statements to see your archetype (' + n + ' done).'; return; }
+      const order = D.statements.map(([k]) => k);
+      const best = order.reduce((b, k) => (scores[k] > scores[b] ? k : b), order[0]);
+      a12.hidden = true;
+      render(best, scores);
+      history.replaceState(null, '', location.pathname + '?result=' + best);
+      track('Tool Complete', { tool: 'archetype-12', result: best });
+      out.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+    const shared = new URLSearchParams(location.search).get('result');
+    if (shared && D.arch12[shared]) { a12.hidden = true; render(shared, null); }
+  }
+
+  // ---------- Tools hub search ----------
+  const search = $('[data-tool-search]');
+  if (search) {
+    const tiles = [...document.querySelectorAll('.tl-hub .tl-grid .tl-tile')];
+    const empty = $('.tl-empty');
+    const run = () => {
+      const q = search.q.value.trim().toLowerCase();
+      let shown = 0;
+      tiles.forEach(t => { const hit = !q || q.split(/\s+/).every(w => t.dataset.keywords.includes(w)); t.hidden = !hit; if (hit) shown++; });
+      if (empty) empty.hidden = shown > 0;
+    };
+    search.addEventListener('input', run);
+    search.addEventListener('submit', e => { e.preventDefault(); run(); const first = tiles.find(t => !t.hidden); if (first && search.q.value.trim()) first.focus(); });
   }
 })();
