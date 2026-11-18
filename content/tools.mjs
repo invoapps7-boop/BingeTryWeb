@@ -251,10 +251,10 @@ export const archetypeQuiz = [
 
 export const toolPages = {
   hub: {
-    path: '/tools/', title: 'Free Style Tools: Build Your Style Blueprint',
-    h1: 'Free style tools: build your Style Blueprint',
+    path: '/tools/', title: 'Free Style Tools: Quizzes and Calculators',
+    h1: 'Free style tools',
     keyword: 'free style tools',
-    answer: 'Style BFF’s free style tools work as one journey. Find your body shape, your color season and your style archetype, then generate outfits that use all three. Your answers combine into a Style Blueprint you can share or print. Each step takes one to three minutes, and nothing is uploaded.'
+    answer: 'Style BFF’s free style tools are quick quizzes and calculators for your colors, body shape and personal style: an archetype quiz, a color season quiz, a body shape calculator, a style archetype quiz, an outfit generator and a Style Blueprint that brings your results together. They are free, need no signup and run in your browser.'
   },
   shape: {
     path: '/tools/body-shape-calculator/', title: 'Body Shape Calculator: Find Your Shape',
@@ -264,15 +264,21 @@ export const toolPages = {
   },
   archetype: {
     path: '/tools/style-archetype-quiz/', title: 'Style Archetype Quiz: What’s My Style?',
-    h1: 'Style archetype quiz: what’s my style?',
+    h1: 'Style archetype quiz',
     keyword: 'style archetype quiz',
     answer: 'Answer eight quick questions about the clothes, shoes and moments you love to find your style archetype: Classic, Minimalist, Romantic, Relaxed, Bold, Sporty, Bohemian or Edgy. You get your main and second archetype, signature pieces and outfit formulas for real occasions.'
   },
   outfit: {
     path: '/tools/outfit-generator/', title: 'What Should I Wear? Free Outfit Generator',
-    h1: 'What should I wear? Outfit generator',
+    h1: 'Outfit generator',
     keyword: 'what should i wear outfit generator',
     answer: 'Pick the occasion and the weather, and the outfit generator builds three outfit formulas for you. If you have used the other free tools, it also uses your body shape, color season and style archetype, so the colors and shapes are chosen for you, not for a model.'
+  },
+  archetype12: {
+    path: '/tools/archetype-quiz/', title: 'Archetype Quiz: Which of the 12 Are You?',
+    h1: 'Archetype quiz',
+    keyword: 'archetype quiz',
+    answer: 'This free archetype quiz matches you to one of the 12 archetypes, from the Innocent and the Sage to the Rebel and the Ruler, using 12 quick statements. Your result shows your archetype’s core desire and how to dress like it, with a matching style archetype, signature pieces and outfit ideas. It takes about two minutes and needs no signup.'
   },
   blueprint: {
     path: '/tools/style-blueprint/', title: 'Your Style Blueprint: Free Style Profile',
@@ -281,3 +287,65 @@ export const toolPages = {
     answer: 'Your Style Blueprint brings together your body shape, color season and style archetype as three personal style rules, a color palette and outfit formulas for work, everyday and special occasions. Share the link with a friend or print it to take shopping.'
   }
 };
+
+// ---------------------------------------------------------------------------
+// Archetype quiz (added 2026-11-18): the 12 archetypes proposed for branding by Margaret Mark and
+// Carol S. Pearson in The Hero and the Outlaw (2001), drawing on Carl Jung's idea of archetypes
+// (source: Wikipedia, Jungian archetypes, opened 2026-11-18). Core-desire lines are our own short
+// summaries. The pairing with one of the eight style archetypes is Style BFF's editorial suggestion,
+// not a research finding, and the quiz is a reflection tool, not a validated personality test.
+export const archetypes12 = {
+  innocent: { name: 'The Innocent', desire: 'To feel safe, stay hopeful and keep life simple.', style: 'romantic',
+    dress: 'Fresh and uncomplicated: crisp white shirts, light-wash denim, soft florals and ballet flats, in light, clear colors.',
+    pieces: ['A crisp white shirt', 'Light-wash straight jeans', 'A soft floral midi dress', 'Ballet flats or clean white sneakers'] },
+  everyperson: { name: 'The Everyperson', aka: 'Also called the Everyman or the Regular Person.', desire: 'To belong and feel at ease with people.', style: 'relaxed',
+    dress: 'Easy, approachable basics that work anywhere: good jeans, soft T-shirts, an easy knit and clean sneakers, in versatile neutrals.',
+    pieces: ['Well-fitting mid-wash jeans', 'Soft cotton T-shirts', 'An easy crew-neck knit', 'Clean everyday sneakers'] },
+  hero: { name: 'The Hero', desire: 'To prove themselves through effort and courage.', style: 'sporty',
+    dress: 'Practical and ready to move: structured athleisure, a zip jacket, clean trainers and strong, simple colors.',
+    pieces: ['A tailored track or zip jacket', 'Straight-leg joggers or cargo trousers', 'Clean trainers', 'A crossbody bag that keeps your hands free'] },
+  caregiver: { name: 'The Caregiver', desire: 'To protect and look after other people.', style: 'relaxed',
+    dress: 'Warm, soft and comforting: cardigans, cozy knits, easy midi dresses and comfortable flats, in warm neutrals and soft colors.',
+    pieces: ['A long cardigan', 'A cozy knit in a warm neutral', 'An easy midi dress', 'Comfortable leather flats'] },
+  explorer: { name: 'The Explorer', desire: 'Freedom, discovery and new experiences.', style: 'bohemian',
+    dress: 'Built for going somewhere: utility jackets, layered textures, broken-in boots and relaxed pieces, in earthy colors.',
+    pieces: ['A utility or field jacket', 'Broken-in ankle boots', 'A flowing printed skirt or wide trousers', 'A woven or canvas bag'] },
+  rebel: { name: 'The Rebel', aka: 'Also called the Outlaw.', desire: 'To change what is not working.', style: 'edgy',
+    dress: 'Sharp and a little unexpected: a leather jacket, black denim, boots and one detail that breaks the rules, in dark, high-contrast colors.',
+    pieces: ['A leather or faux-leather jacket', 'Black jeans', 'Chunky boots', 'One statement piece of silver jewelry'] },
+  lover: { name: 'The Lover', desire: 'Closeness, beauty and how things feel.', style: 'romantic',
+    dress: 'Soft, sensual and polished: wrap dresses, silky fabrics, lace or ruffle details and draped shapes, in rich warm colors like wine and rose.',
+    pieces: ['A wrap dress', 'A silky blouse or camisole', 'A lace or ruffle detail', 'Delicate gold jewelry'] },
+  creator: { name: 'The Creator', desire: 'To make something original that lasts.', style: 'bohemian',
+    dress: 'Expressive and personal: vintage or handmade finds, interesting textures, artful prints and a color story you chose yourself.',
+    pieces: ['A vintage or handmade piece', 'An artful print', 'Textured knits or linen', 'Statement earrings'] },
+  jester: { name: 'The Jester', desire: 'To enjoy the moment and make other people laugh.', style: 'bold',
+    dress: 'Playful and bright: color, fun prints and accessories that start conversations.',
+    pieces: ['A bright color you love', 'A fun print', 'Colorful sneakers', 'A playful bag or bold glasses'] },
+  sage: { name: 'The Sage', desire: 'To understand how things really work.', style: 'minimalist',
+    dress: 'Quiet and considered: clean lines, quality basics, a tight neutral palette and one signature detail, such as great glasses.',
+    pieces: ['A fine-knit sweater', 'Tailored straight trousers', 'A long, simple coat', 'Well-made glasses or a classic watch'] },
+  magician: { name: 'The Magician', desire: 'To transform things and make change happen.', style: 'bold',
+    dress: 'Dramatic and memorable: striking silhouettes, one-color outfits in deep shades and one piece that changes the whole look.',
+    pieces: ['A one-color outfit in a deep shade', 'A dramatic coat', 'A sculptural earring or ring', 'Sleek heeled boots'] },
+  ruler: { name: 'The Ruler', desire: 'Order, high standards and being in charge.', style: 'classic',
+    dress: 'Polished and structured: tailored blazers, crisp shirts, a structured bag and good shoes, in navy, camel, black and white.',
+    pieces: ['A tailored blazer', 'A crisp shirt', 'A structured leather bag', 'Polished loafers or pumps'] }
+};
+
+// One statement per archetype, interleaved so similar archetypes are not next to each other.
+export const archetypeStatements = [
+  ['explorer', 'I get restless when life is too routine. I want new places and experiences.'],
+  ['ruler', 'I like to be in charge, with a clear plan and high standards.'],
+  ['lover', 'Beauty, closeness and how things feel matter a lot to me.'],
+  ['sage', 'I like to understand how something works before I decide.'],
+  ['jester', 'I would rather make the room laugh than be taken too seriously.'],
+  ['caregiver', 'I notice what other people need, often before they ask.'],
+  ['rebel', 'I am happy to break a rule that does not make sense.'],
+  ['innocent', 'I feel best when life is simple, honest and hopeful.'],
+  ['creator', 'I am happiest when I am making something original.'],
+  ['hero', 'I am at my best when I am working toward a hard goal.'],
+  ['magician', 'I love big transformations, and I like to be the one who makes them happen.'],
+  ['everyperson', 'I would rather fit in and feel at ease than stand out.']
+];
+export const likert = ['Strongly disagree', 'Disagree', 'Neutral', 'Agree', 'Strongly agree'];

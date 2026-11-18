@@ -90,6 +90,6 @@ export const guides2026_11_10 = [
       ['What colors suit dusky skin for a saree?', 'Rich jewel tones such as emerald, royal blue, magenta and maroon flatter most deeper skin tones. Match the zari to your undertone: gold for warm, silver for cool.']
     ],
     sources: [PLAY, APP],
-    related: ['/blog/what-colors-look-good-on-me/', '/blog/best-free-color-analysis-apps/', '/features/color-analysis/', '/quiz/', '/answers/best-fashion-styling-apps-in-india/']
+    related: ['/blog/what-colors-look-good-on-me/', '/blog/colors-that-make-you-look-younger/', '/blog/best-free-color-analysis-apps/', '/features/color-analysis/', '/quiz/', '/answers/best-fashion-styling-apps-in-india/']
   }
 ];
