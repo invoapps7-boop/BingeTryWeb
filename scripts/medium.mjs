@@ -72,7 +72,7 @@ export function mediumArticle(page, ctx) {
     + '<aside class="md-app"><div><p class="md-app-title">See it on you before you wear it</p><p>Style BFF builds outfits from your own closet and shows them on your photo. Free Style Profile on iOS and Android.</p></div>' + ctx.storeButtons(slug) + '</aside>'
     + '<footer class="md-footer"><div class="md-tags"><a href="/blog/#' + topicKey + '">' + ctx.esc(topicLabel) + '</a><a href="/blog/">Style notes</a><a href="/tools/">Free style tools</a></div>'
     + '<div class="md-writer"><a class="md-avatar md-avatar-lg" href="' + ctx.AUTHOR_PATH + '" aria-hidden="true" tabindex="-1">MG</a><div><p class="md-writer-name">Written by <a href="' + ctx.AUTHOR_PATH + '">Muskan Gupta</a></p><p>Co-founder of Style BFF, built in Bangalore. Writes about color, proportion and getting dressed from the clothes you already own. <a href="/editorial-policy/">Editorial standards</a></p></div></div></footer>'
-    + '</article><section class="md-more" aria-labelledby="md-more-h"><div class="md-more-inner"><h2 id="md-more-h">More from Style BFF</h2><!--MORE_FROM--><a class="md-more-all" href="/blog/">See all stories</a></div></section></main>';
+    + '</article><section class="md-more" aria-labelledby="md-more-h"><div class="md-more-inner"><h2 id="md-more-h">More from <span class="md-pub">Style BFF</span></h2><!--MORE_FROM--><a class="md-more-all" href="/blog/">See all stories</a></div></section></main>';
 }
 
 function thumb(item, ctx, w, h, cls) {
@@ -92,10 +92,10 @@ export function mediumHub(items, ctx) {
   const picks = ['what-colors-look-good-on-me', 'how-to-dress-for-your-body-type', 'how-to-find-your-style'].map(s => items.find(i => i.path === '/blog/' + s + '/')).filter(Boolean);
   const list = items.map(i => {
     const [key, label] = topicFor(slugOf(i.path));
-    return '<article class="md-item" data-cat="' + key + '"><a href="' + i.path + '"><div class="md-item-copy"><span class="md-item-author"><span class="md-avatar md-avatar-xs" aria-hidden="true">MG</span>Muskan Gupta <span class="md-in">in</span> Style BFF</span><h2>' + ctx.esc(i.h1) + '</h2><p>' + ctx.esc(ctx.trim(i.answer, 150)) + '</p><span class="md-meta"><time datetime="' + i.date + '">' + fmtDate(i.date) + '</time> · ' + i.minutes + ' min read <span class="md-pill">' + label + '</span></span></div>' + thumb(i, ctx, 320, 214, 'md-item-img') + '</a></article>';
+    return '<article class="md-item" data-cat="' + key + '"><a href="' + i.path + '"><div class="md-item-copy"><span class="md-item-author"><span class="md-avatar md-avatar-xs" aria-hidden="true">MG</span>Muskan Gupta <span class="md-in">in</span> <span class="md-pub">Style BFF</span></span><h2>' + ctx.esc(i.h1) + '</h2><p>' + ctx.esc(ctx.trim(i.answer, 150)) + '</p><span class="md-meta"><time datetime="' + i.date + '">' + fmtDate(i.date) + '</time> · ' + i.minutes + ' min read <span class="md-pill">' + label + '</span></span></div>' + thumb(i, ctx, 320, 214, 'md-item-img') + '</a></article>';
   }).join('');
   return '<main id="main" class="md-main md-hub"><div class="md-hub-grid"><div class="md-feed">'
-    + '<header class="md-hub-head"><h1>Style notes</h1><p>Practical guides on color, proportion, outfits and the clothes you already own. Written by <a href="' + ctx.AUTHOR_PATH + '">Muskan Gupta</a>.</p></header>'
+    + '<header class="md-hub-head"><p class="md-eyebrow">The Style BFF blog</p><h1>Style notes</h1><p>Practical guides on color, proportion, outfits and the clothes you already own. Written by <a href="' + ctx.AUTHOR_PATH + '">Muskan Gupta</a>.</p></header>'
     + '<div class="md-tabs" role="toolbar" aria-label="Filter stories by topic">' + TOPICS.map(([k, l], n) => '<button type="button" data-cat="' + k + '" aria-pressed="' + (n === 0) + '">' + l + '</button>').join('') + '</div>'
     + '<div class="md-list">' + list + '</div></div>'
     + '<aside class="md-side"><section><h2>Start here</h2>' + picks.map(i => '<a class="md-pick" href="' + i.path + '"><span class="md-item-author"><span class="md-avatar md-avatar-xs" aria-hidden="true">MG</span>Muskan Gupta</span><span class="md-pick-title">' + ctx.esc(i.h1) + '</span></a>').join('') + '</section>'

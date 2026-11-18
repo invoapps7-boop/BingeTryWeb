@@ -821,3 +821,42 @@ body.page-article, body.page-blog-hub { background: #fff; }
 .inner-page .md-body th, .inner-page .md-body td, .inner-page .md-body thead th { background: none; color: var(--md-ink); }
 .md-feed, .md-side { min-width: 0; }
 @media (max-width: 1000px) { .md-hub-grid { grid-template-columns: minmax(0, 1fr); } }
+
+/* Style BFF tint on the Medium layout: warm off-white paper, a few orange accents.
+   Orange text uses --md-orange-ink (#B54D07, 4.85:1 on the paper) so it stays readable;
+   the bright brand orange is used only for lines, borders and fills. */
+body.page-article, body.page-blog-hub { background: #FBF6EF; }
+.md-main { --md-paper: #FBF6EF; --md-paper-2: #F4ECE1; --md-rule: #EADFD1; --md-orange: #FD8817; --md-orange-ink: #B54D07; --md-peach: #FCE7D2; background: var(--md-paper); }
+.md-kicker, .md-eyebrow { color: var(--md-orange-ink); font-size: .78rem; font-weight: 700; letter-spacing: .09em; text-transform: uppercase; text-decoration: none; }
+.md-kicker:hover { color: var(--md-orange-ink); text-decoration: underline; }
+.md-eyebrow { margin: 0 0 .6rem; }
+.md-pub { color: var(--md-orange-ink); font-weight: 600; }
+.md-avatar { background: var(--md-orange-ink); }
+.md-share a:hover { color: var(--md-orange-ink); }
+.md-cover img, .md-card-img, .md-item-img { background: var(--md-paper-2); }
+.md-body a { text-decoration-color: var(--md-orange); text-decoration-thickness: 2px; text-underline-offset: 3px; }
+.md-body a:hover { color: var(--md-orange-ink); }
+.md-body .md-cite, .md-body blockquote { border-left-color: var(--md-orange); }
+.md-body li::marker { color: var(--md-orange-ink); }
+.md-body .table-wrap { background: transparent; }
+.inner-page .md-body thead th { border-bottom-color: var(--md-orange); }
+.md-body details { border-color: var(--md-rule); }
+.md-body summary::after { color: var(--md-orange-ink); }
+.md-app { background: #FFF1E2; border: 0; border-left: 3px solid var(--md-orange); }
+.md-tags a { background: var(--md-paper-2); }
+.md-tags a:hover { background: var(--md-peach); color: var(--md-orange-ink); }
+.md-more { background: var(--md-paper-2); border-top-color: var(--md-rule); }
+.md-card:hover .md-card-title, .md-pick:hover .md-pick-title { color: var(--md-orange-ink); text-decoration: none; }
+.md-more-all { border-color: var(--md-orange-ink); color: var(--md-orange-ink) !important; font-weight: 600; }
+.md-more-all:hover { background: var(--md-orange-ink); color: #fff !important; }
+.md-tabs { background: var(--md-paper); }
+.md-tabs button[aria-pressed="true"] { color: var(--md-orange-ink); border-bottom: 2px solid var(--md-orange); font-weight: 600; }
+.md-tabs button:hover { color: var(--md-ink); }
+.md-item:hover h2 { color: var(--md-orange-ink); text-decoration: none; }
+.md-pill { background: var(--md-peach); color: var(--md-orange-ink); font-weight: 600; }
+.md-chips button { background: var(--md-paper-2); }
+.md-chips button:hover { background: var(--md-peach); color: var(--md-orange-ink); }
+.md-side-link:hover { color: var(--md-orange-ink); }
+.md-main a.md-kicker, .md-hub-head .md-eyebrow { color: var(--md-orange-ink); }
+.md-main .store-badge, .md-main .store-badge:hover { color: #fff; }
+.md-more .md-card-img { background: #EADFD1; }
