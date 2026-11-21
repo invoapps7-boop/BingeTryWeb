@@ -124,3 +124,28 @@ document.addEventListener('DOMContentLoaded',()=>{
 
 // How it works: replay the "Style tracking" journey as an animation when it scrolls into view.
 (()=>{const t=document.querySelector('[data-style-track]');if(!t||!('IntersectionObserver' in window)||window.matchMedia('(prefers-reduced-motion: reduce)').matches)return;t.classList.add('is-armed');const io=new IntersectionObserver(es=>{if(es.some(e=>e.isIntersecting)){io.disconnect();t.classList.add('is-playing');setTimeout(()=>t.classList.add('is-delivered'),4650)}},{threshold:.3});io.observe(t)})();
+
+// Homepage hero: occasion chips synced to the stylist video, typed request and BFF reply.
+(()=>{const stage=document.querySelector('[data-hero-stage]');if(!stage)return;
+const track=(name,props={})=>{window.plausible?.(name,{props});window.dataLayer?.push({event:name,...props});window.dispatchEvent(new CustomEvent('stylebff:analytics',{detail:{name,props}}))};
+document.querySelectorAll('[data-cta="hero-onelink"]').forEach(a=>a.addEventListener('click',()=>track('Hero CTA Click',{cta:'style_me_now',page:location.pathname})));
+const vid=stage.querySelector('[data-hero-video]'),chips=stage.querySelector('[data-hero-chips]'),typed=stage.querySelector('[data-hero-typed]'),reply=stage.querySelector('[data-hero-reply]'),replyText=stage.querySelector('[data-hero-reply-text]'),mirror=stage.querySelector('[data-hero-mirror]');
+if(!vid||!chips)return;
+const reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+// Start times (seconds) of each look inside /assets/hero/stylist-looks.mp4
+const looks=[
+ {k:'Your photo',t:0,end:1.55,ask:'Here’s me. Style me?',rep:'Love it! Tell me the plan and I’ll style you 👀'},
+ {k:'Date night',t:1.75,end:4,ask:'Something for date night 💕',rep:'<b>Burgundy satin</b> + camel. Warm, soft, a total head-turner.'},
+ {k:'Dinner out',t:4.25,end:6.45,ask:'Dinner with friends, a bit chic',rep:'<b>Emerald silk</b> and sharp black trousers. Easy glam.'},
+ {k:'Office',t:6.7,end:8.95,ask:'Big meeting on Monday',rep:'<b>Navy blazer</b>, camel trousers. Polished, never stiff.'}
+];
+const buttons=looks.map((l,i)=>{const b=document.createElement('button');b.type='button';b.className='hx-chip';b.setAttribute('aria-pressed','false');b.innerHTML=l.k+'<i aria-hidden="true"></i>';
+ b.addEventListener('click',()=>{vid.currentTime=l.t+.02;vid.play().catch(()=>{});track('Hero Look Chip',{look:l.k})});chips.append(b);return b});
+let cur=-1,typeTimer,replyTimer;
+const type=s=>{clearInterval(typeTimer);if(reduce){typed.textContent=s;return}typed.textContent='';const ch=[...s];let i=0;typeTimer=setInterval(()=>{typed.textContent+=ch[i++]||'';if(i>=ch.length)clearInterval(typeTimer)},38)};
+const set=i=>{if(i===cur)return;cur=i;const l=looks[i];buttons.forEach((b,j)=>b.setAttribute('aria-pressed',String(j===i)));type(l.ask);reply.classList.remove('is-on');clearTimeout(replyTimer);
+ replyTimer=setTimeout(()=>{replyText.innerHTML=l.rep;reply.classList.add('is-on')},reduce?0:650);mirror.classList.remove('is-swap');void mirror.offsetWidth;mirror.classList.add('is-swap')};
+const tick=()=>{const t=vid.currentTime;let i=0;looks.forEach((l,j)=>{if(t>=l.t-.12)i=j});set(i);const l=looks[i],p=Math.min(1,Math.max(0,(t-l.t)/(l.end-l.t)));buttons.forEach((b,j)=>b.firstElementChild.style.width=(j===i?p*100:0)+'%');requestAnimationFrame(tick)};
+if(reduce){vid.removeAttribute('autoplay');vid.pause()}else vid.play().catch(()=>{});
+set(0);requestAnimationFrame(tick);
+})();
