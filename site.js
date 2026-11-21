@@ -149,3 +149,32 @@ const tick=()=>{const t=vid.currentTime;let i=0;looks.forEach((l,j)=>{if(t>=l.t-
 if(reduce){vid.removeAttribute('autoplay');vid.pause()}else vid.play().catch(()=>{});
 set(0);requestAnimationFrame(tick);
 })();
+
+// Homepage sections: scroll reveals, closet clean-up board, try-on compare slider, final CTA tracking.
+(()=>{if(!document.body.classList.contains('home-v2'))return;
+const reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const track=(name,props={})=>{window.plausible?.(name,{props});window.dataLayer?.push({event:name,...props});window.dispatchEvent(new CustomEvent('stylebff:analytics',{detail:{name,props}}))};
+document.querySelectorAll('[data-cta="final-onelink"]').forEach(a=>a.addEventListener('click',()=>track('Hero CTA Click',{cta:'final_style_me_now',page:location.pathname})));
+const io=(els,cb,opts)=>{if(!('IntersectionObserver' in window)){els.forEach(cb);return}const o=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){cb(e.target);o.unobserve(e.target)}}),opts);els.forEach(el=>o.observe(el))};
+// reveal
+const reveals=[...document.querySelectorAll('[data-reveal]')];
+if(!reduce&&'IntersectionObserver' in window){document.documentElement.classList.add('hs-armed');io(reveals,el=>el.classList.add('is-in'),{rootMargin:'0px 0px -12% 0px'})}
+// closet board: scan each tile from gallery photo to clean piece, then loop
+const board=document.querySelector('[data-closet-board]');
+if(board){const tiles=[...board.querySelectorAll('.hs-tile')];
+ const clean=t=>{t.classList.add('is-scanning');setTimeout(()=>{t.classList.add('is-clean');t.classList.remove('is-scanning')},reduce?0:520)};
+ const run=()=>{if(reduce){tiles.forEach(t=>t.classList.add('is-clean'));return}
+  tiles.forEach((t,i)=>setTimeout(()=>clean(t),300+i*420));
+  setTimeout(()=>{tiles.forEach(t=>t.classList.remove('is-clean'));setTimeout(run,900)},300+tiles.length*420+4200)};
+ io([board],run,{threshold:.35})}
+// compare slider
+const cmp=document.querySelector('[data-compare]');
+if(cmp){let drag=false,touched=false;
+ const set=x=>{x=Math.min(100,Math.max(0,x));cmp.style.setProperty('--x',x+'%');cmp.setAttribute('aria-valuenow',String(Math.round(x)))};
+ const fromEvent=e=>{const r=cmp.getBoundingClientRect();set((e.clientX-r.left)/r.width*100)};
+ cmp.addEventListener('pointerdown',e=>{drag=true;touched=true;cmp.setPointerCapture(e.pointerId);fromEvent(e)});
+ cmp.addEventListener('pointermove',e=>{if(drag)fromEvent(e)});
+ cmp.addEventListener('pointerup',()=>{if(drag)track('Try-on Slider Drag',{page:location.pathname});drag=false});
+ cmp.addEventListener('keydown',e=>{const v=+cmp.getAttribute('aria-valuenow');if(e.key==='ArrowLeft'){set(v-5);touched=true;e.preventDefault()}if(e.key==='ArrowRight'){set(v+5);touched=true;e.preventDefault()}});
+ if(!reduce)io([cmp],()=>{let t0;const step=ts=>{if(touched)return;t0=t0||ts;const k=(ts-t0)/2600;set(50+40*Math.sin(k*Math.PI*2)*Math.max(0,1-k/1.5));if(k<1.5)requestAnimationFrame(step)};requestAnimationFrame(step)},{threshold:.5})}
+})();
