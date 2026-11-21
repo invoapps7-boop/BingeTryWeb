@@ -1438,3 +1438,7 @@ a { color: inherit; }
 .hs-try-arrow{position:absolute;left:34%;top:56%;width:80px;z-index:3}
 @media (max-width:1100px){.hs-trio{grid-template-columns:1fr 1fr}.hs-card-try{grid-column:1/-1}.hs-card-try .hs-vis{height:360px}.hs-card-try .hs-try-src{left:12%}.hs-card-try .hs-try-res{right:14%;width:30%}}
 @media (max-width:680px){.hs-trio{grid-template-columns:1fr}.hs-card-try .hs-try-src{left:22px}.hs-card-try .hs-try-res{right:22px;width:50%}.hs-vis{height:380px}}
+/* closet board: BFF line sits under the tiles instead of over them */
+.hs-say{position:static;display:flex;align-items:center;gap:12px;margin-top:18px;padding-top:16px;border-top:1.5px dashed var(--hs-line)}
+.hs-say img{width:52px;height:52px;border-width:3px;flex:none}
+.hs-say p{margin:0;max-width:none;border-radius:18px 18px 18px 6px}
