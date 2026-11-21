@@ -1125,7 +1125,14 @@ a { color: inherit; }
 .hx-blob{position:absolute;right:calc(max(0px,(100% - 1240px)/2) - 300px);top:30px;width:820px;height:820px;border-radius:50%;z-index:-1;
   background:radial-gradient(circle at 35% 35%,#FFC07A 0%,#F7891E 45%,#E5630F 100%)}
 .hx-copy{position:relative;z-index:2}
-.hx-proof{display:inline-flex;align-items:center;gap:10px;margin:0;background:#FFF8EE;border:1.5px solid var(--hx-line);border-radius:100px;padding:9px 18px;font-size:15px;color:var(--hx-mut);font-weight:500}
+.hx-proof{display:inline-flex;align-items:center;gap:14px;margin:0;background:#FFFCF7;border:1.5px solid var(--hx-line);border-radius:100px;padding:7px 20px 7px 7px;font-size:15px;color:var(--hx-mut);font-weight:500;box-shadow:0 10px 26px rgba(120,50,0,.08)}
+.hx-avs{display:flex}
+.hx-avs img{width:38px;height:38px;border-radius:50%;object-fit:cover;border:3px solid #FFFCF7;margin-left:-12px;box-shadow:0 2px 6px rgba(60,20,0,.12)}
+.hx-avs img:first-child{margin-left:0}
+.hx-proof-txt{display:flex;flex-direction:column;align-items:flex-start;line-height:1.25;text-align:left}
+.hx-stars{font-size:12.5px;color:var(--hx-mut)}
+.hx-stars i{font-style:normal;color:#F7A21E;letter-spacing:1px}
+.hx-stars b{color:var(--hx-ink)}
 .hx-proof b{color:var(--hx-ink)}
 .hx-dot{width:9px;height:9px;border-radius:50%;background:#63da7e;box-shadow:0 0 0 5px rgba(99,218,126,.18)}
 .hx h1{font-family:'Bricolage Grotesque',var(--body);font-weight:800;font-size:clamp(40px,4.2vw,60px);line-height:.98;letter-spacing:-2.5px;margin:26px 0 22px;color:var(--hx-ink)}
