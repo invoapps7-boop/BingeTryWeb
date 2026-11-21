@@ -1120,7 +1120,8 @@ a { color: inherit; }
 @font-face{font-family:'Bodoni Moda';font-style:italic;font-weight:400 900;font-display:swap;src:url(/assets/hero/bodoni-moda-italic.woff2) format('woff2')}
 .hx{--hx-or:#F7891E;--hx-or2:#EC600E;--hx-ink:#1F1610;--hx-mut:#6B5A4C;--hx-line:#F0D9B8;
   position:relative;overflow:hidden;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:40px;align-items:center;
-  margin:0;padding:40px max(32px,calc((100% - 1176px)/2)) 64px;min-height:min(880px,calc(100vh - 80px));color:var(--hx-ink);isolation:isolate}
+  margin:0;padding:40px max(32px,calc((100% - 1176px)/2)) 64px;min-height:min(880px,calc(100vh - 80px));color:var(--hx-ink);isolation:isolate;background:#FEF2DC}
+.home-v2:has(.hx) .site-header{background:rgba(254,242,220,.92);border-bottom-color:rgba(31,22,16,.06)}
 .hx-blob{position:absolute;right:calc(max(0px,(100% - 1240px)/2) - 300px);top:30px;width:820px;height:820px;border-radius:50%;z-index:-1;
   background:radial-gradient(circle at 35% 35%,#FFC07A 0%,#F7891E 45%,#E5630F 100%)}
 .hx-copy{position:relative;z-index:2}
