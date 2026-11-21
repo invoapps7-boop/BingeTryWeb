@@ -143,8 +143,8 @@ const buttons=looks.map((l,i)=>{const b=document.createElement('button');b.type=
  b.addEventListener('click',()=>{vid.currentTime=l.t+.02;vid.play().catch(()=>{});track('Hero Look Chip',{look:l.k})});chips.append(b);return b});
 let cur=-1,typeTimer,replyTimer;
 const type=s=>{clearInterval(typeTimer);if(reduce){typed.textContent=s;return}typed.textContent='';const ch=[...s];let i=0;typeTimer=setInterval(()=>{typed.textContent+=ch[i++]||'';if(i>=ch.length)clearInterval(typeTimer)},38)};
-const set=i=>{if(i===cur)return;cur=i;const l=looks[i];buttons.forEach((b,j)=>b.setAttribute('aria-pressed',String(j===i)));type(l.ask);reply.classList.remove('is-on');clearTimeout(replyTimer);
- replyTimer=setTimeout(()=>{replyText.innerHTML=l.rep;reply.classList.add('is-on')},reduce?0:650);mirror.classList.remove('is-swap');void mirror.offsetWidth;mirror.classList.add('is-swap')};
+const set=i=>{if(i===cur)return;cur=i;const l=looks[i];buttons.forEach((b,j)=>b.setAttribute('aria-pressed',String(j===i)));type(l.ask);if(reply){reply.classList.remove('is-on');clearTimeout(replyTimer);
+ replyTimer=setTimeout(()=>{replyText.innerHTML=l.rep;reply.classList.add('is-on')},reduce?0:650)}mirror.classList.remove('is-swap');void mirror.offsetWidth;mirror.classList.add('is-swap')};
 const tick=()=>{const t=vid.currentTime;let i=0;looks.forEach((l,j)=>{if(t>=l.t-.12)i=j});set(i);const l=looks[i],p=Math.min(1,Math.max(0,(t-l.t)/(l.end-l.t)));buttons.forEach((b,j)=>b.firstElementChild.style.width=(j===i?p*100:0)+'%');requestAnimationFrame(tick)};
 if(reduce){vid.removeAttribute('autoplay');vid.pause()}else vid.play().catch(()=>{});
 set(0);requestAnimationFrame(tick);
