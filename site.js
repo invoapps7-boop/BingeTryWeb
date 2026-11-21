@@ -167,6 +167,11 @@ if(board){const tiles=[...board.querySelectorAll('.hs-tile')];
   tiles.forEach((t,i)=>setTimeout(()=>clean(t),300+i*420));
   setTimeout(()=>{tiles.forEach(t=>t.classList.remove('is-clean'));setTimeout(run,900)},300+tiles.length*420+4200)};
  io([board],run,{threshold:.35})}
+// colour drape: cycle the fabric colour under the portrait
+const drape=document.querySelector('[data-drape]');
+if(drape){const arch=drape.querySelector('.hs-arch'),items=[...drape.querySelectorAll('.hs-fan li')],name=drape.querySelector('[data-drape-name]');let k=0;
+ const show=i=>{const li=items[i];const c=li.style.getPropertyValue('--c');arch.style.setProperty('--c',c);items.forEach((x,j)=>x.classList.toggle('is-on',j===i));name.textContent=li.textContent;name.style.color=c};
+ show(0);if(!reduce)io([drape],()=>setInterval(()=>{k=(k+1)%items.length;show(k)},2200),{threshold:.3})}
 // compare slider
 const cmp=document.querySelector('[data-compare]');
 if(cmp){let drag=false,touched=false;
