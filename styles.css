@@ -1467,3 +1467,17 @@ a { color: inherit; }
 .hs-sv-look{background:var(--hs-ink)}
 .hs-sv-look img{height:calc(100% - 20px);width:auto;aspect-ratio:9/16;object-fit:cover;object-position:center 10%;border-radius:14px;border:4px solid #3A2C22}
 .hs-sv-look em{background:var(--hs-or);color:#fff}
+/* hero mascot moved beside the mirror, on the orange circle */
+.hx-mcol{position:relative}
+.hx-mcol .hx-bini{position:absolute;right:-158px;bottom:96px;width:180px;height:180px;margin:0;z-index:3;filter:drop-shadow(0 16px 22px rgba(90,30,0,.28))}
+.hx-rail{padding-bottom:0}
+@media (min-width:981px){
+  .hx-stage{padding-left:130px;padding-right:150px;gap:0}
+  .hx-rail{position:absolute;left:0;top:70px;width:230px;padding:0;z-index:4}
+  .hx-mcol .hx-bini,.hx-mcol .hx-bini{right:-162px;bottom:100px;width:180px;height:180px}
+}
+@media (min-width:981px){
+  .hx h1{font-size:clamp(40px,3.9vw,56px)}
+  .hx h1 em{white-space:nowrap}
+  .hx-you,.hx-you .hx-who{align-self:flex-start;text-align:left;justify-content:flex-start}
+}
