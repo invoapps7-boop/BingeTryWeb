@@ -37,7 +37,7 @@ export function fashionGlossary({ esc, slugify, siteUrl, existing }) {
     const more = link && existing(link) ? ' <a class="fg-more" href="' + link + '">Read more</a>' : '';
     const ph = fashionPhotos[term];
     const visual = ph
-      ? '<figure class="fg-visual fg-photo"><img src="https://images.unsplash.com/' + ph[0] + '?w=480&amp;h=360&amp;fit=crop&amp;crop=entropy&amp;fm=webp&amp;q=70" width="480" height="360" loading="lazy" decoding="async" alt="' + esc('Example of ' + term.toLowerCase()) + '"/><figcaption>Photo: <a href="https://unsplash.com/@' + ph[2] + UTM + '" rel="nofollow noopener" target="_blank">' + esc(ph[1]) + '</a> / <a href="https://unsplash.com/photos/' + ph[3] + UTM + '" rel="nofollow noopener" target="_blank">Unsplash</a></figcaption></figure>'
+      ? '<figure class="fg-visual fg-photo"><img src="https://images.unsplash.com/' + ph[0] + '?w=480&amp;h=360&amp;fit=crop&amp;crop=' + (ph[4] || 'entropy') + '&amp;fm=webp&amp;q=70" width="480" height="360" loading="lazy" decoding="async" alt="' + esc('Example of ' + term.toLowerCase()) + '"/><figcaption>Photo: <a href="https://unsplash.com/@' + ph[2] + UTM + '" rel="nofollow noopener" target="_blank">' + esc(ph[1]) + '</a> / <a href="https://unsplash.com/photos/' + ph[3] + UTM + '" rel="nofollow noopener" target="_blank">Unsplash</a></figcaption></figure>'
       : '<figure class="fg-visual fg-drawing">' + drawingFor(term, cat) + '</figure>';
     return '<div class="fg-term" id="' + idOf(term) + '" data-cat="' + cat + '">' + visual + '<div class="fg-text"><h3>' + esc(term) + '</h3><span class="fg-cat">' + esc(catLabel[cat]) + '</span><p>' + esc(def) + more + '</p>' + (aka ? '<p class="fg-aka">Also called: ' + esc(aka) + '</p>' : '') + '</div></div>';
   };
