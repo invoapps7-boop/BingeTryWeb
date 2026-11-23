@@ -1,0 +1,73 @@
+import { INK, FILL, ACC, SOFT, ln, body, acc, accFill, dash, dot, txt, mirror, both, top, sleeve, buttons, placket, strapless, shirt, jacket, bodice } from './base.mjs';
+const tank = () => body('M46 30 L40 30 Q38 46 34 52 L34 106 L86 106 L86 52 Q82 46 80 30 L74 30 C70 46 50 46 46 30 Z');
+export const necklineArt = {
+  'Asymmetric neckline': body('M38 30 L30 36 L32 52 L34 106 L86 106 L86 50 L80 32 L76 32 L76 44 Z') + acc('M76 44 L38 30', 3) + ln('M30 36 L38 30', 2),
+  'Backless': body('M48 26 L30 33 L32 52 L34 106 L86 106 L88 52 L90 33 L72 26 Z') + accFill('M50 30 Q60 34 70 30 L66 74 Q60 82 54 74 Z') + txt(60, 117, 'back view'),
+  'Bardot neckline': both(body('M24 46 L14 66 L22 70 L32 58')) + body('M24 46 L32 58 L34 106 L86 106 L88 58 L96 46 Q60 54 24 46 Z') + accFill('M24 40 Q60 48 96 40 L96 46 Q60 54 24 46 Z'),
+  'Boat neck': top({ neck: 'boat', sleeves: 'three' }),
+  'Cold shoulder': top({ neck: 'crew', sleeves: 'elbow', accentNeck: false }) + both(accFill('M21 42 Q25 35 29 38 Q28 47 22 48 Z')),
+  'Cowl neck': top({ neck: 'cowl', sleeves: 'none' }) + acc('M68 32 C66 38 54 38 52 32 M66 38 C64 42 56 42 54 38', 2),
+  'Crew neck': top({ neck: 'crew' }) + acc('M72 26 C68 30 52 30 48 26', 1.5),
+  'Drawstring neckline': top({ neck: 'drawstring', sleeves: 'puff' }) + acc('M58 37 L55 48 M62 37 L65 48', 2),
+  'Funnel neck': top({ neck: 'funnel', sleeves: 'full' }),
+  'Halter neck': body('M52 12 L44 28 L36 52 L34 106 L86 106 L84 52 L76 28 L68 12 Q60 8 52 12 Z') + acc('M52 12 Q60 8 68 12 M44 28 Q60 44 76 28', 2.5),
+  'Henley neckline': top({ neck: 'crew', accentNeck: false }) + acc('M60 32 L60 48', 2) + buttons(62, [37, 42, 47]),
+  'High neck': top({ neck: 'high', sleeves: 'full' }),
+  'Illusion neckline': top({ neck: 'illusion', sleeves: 'none', accentNeck: false }) + '<path d="M30 33 L48 26 C52 22 68 22 72 26 L90 33 L72 26 C70 50 50 50 48 26 Z" fill="' + SOFT + '" opacity=".45"/>' + acc('M72 26 C70 50 50 50 48 26', 2.5) + acc('M30 33 L48 26 C52 22 68 22 72 26 L90 33', 1.2),
+  'Jewel neckline': top({ neck: 'jewel', sleeves: 'none' }) + ln('M50 29 Q60 38 70 29', 1, '#b8a99a') + dot(60, 37, 2.4, SOFT),
+  'Keyhole neckline': top({ neck: 'crew', accentNeck: false }) + accFill('M60 33 C55 38 55 46 60 50 C65 46 65 38 60 33 Z') + dot(60, 31, 1.6),
+  'Mock neck': top({ neck: 'mock', sleeves: 'full' }),
+  'Off-shoulder neckline': both(body('M22 44 L12 62 L21 66 L32 56')) + body('M22 44 L32 56 L34 106 L86 106 L88 56 L98 44 Q60 50 22 44 Z') + acc('M22 44 Q60 50 98 44'),
+  'One-shoulder neckline': body('M30 30 L26 40 L32 56 L34 106 L86 106 L86 56 L42 28 Z') + acc('M86 56 L42 28') + ln('M30 30 L42 28', 2),
+  'Plunge neckline': top({ neck: 'plunge', sleeves: 'none' }),
+  'Portrait neckline': both(body('M26 42 L14 70 L22 74 L32 56')) + body('M26 40 L32 56 L34 106 L86 106 L88 56 L94 40 Q60 56 26 40 Z') + accFill('M24 36 Q60 52 96 36 L96 44 Q60 62 24 44 Z'),
+  'Queen Anne neckline': top({ neck: 'queen', sleeves: 'full' }),
+  'Racerback': tank() + accFill('M46 30 L56 54 L64 54 L74 30 L69 30 L62 48 L58 48 L51 30 Z') + txt(60, 117, 'back view'),
+  'Scoop neck': top({ neck: 'scoop', sleeves: 'none' }),
+  'Split neck': top({ neck: 'crew' }) + acc('M60 31 L60 46'),
+  'Square neck': top({ neck: 'square', sleeves: 'puff' }),
+  'Strapless': strapless('C72 34 66 36 60 40 C54 36 48 34 34 42'),
+  'Surplice neckline': top({ neck: 'surplice', accentNeck: false, sleeves: 'elbow' }) + acc('M72 26 L44 70 M48 26 L66 56', 2.5),
+  'Sweetheart neckline': both(ln('M40 34 L44 18', 1.6)) + strapless('C86 32 72 30 60 42 C48 30 34 32 34 42'),
+  'Tie neck': top({ neck: 'crew', sleeves: 'full', accentNeck: false }) + accFill('M60 32 L50 28 L48 38 Z M60 32 L70 28 L72 38 Z') + acc('M58 34 L52 58 M62 34 L68 56', 2.5),
+  'Turtleneck': top({ neck: 'turtle', sleeves: 'full' }) + acc('M48 20 Q60 23 72 20', 1.6),
+  'U-neck': top({ neck: 'u', sleeves: 'none' }),
+  'V-neck': top({ neck: 'v' }),
+  'Yoke neckline': top({ neck: 'yoke', sleeves: 'short', accentNeck: false }) + accFill('M72 26 L88 44 L32 44 L48 26 C52 36 68 36 72 26 Z') + ln('M40 50 L38 70 M48 48 L47 70 M56 48 L56 70 M64 48 L64 70 M72 48 L73 70 M80 50 L82 70', 1.1)
+};
+export const collarArt = {
+  'Band collar': shirt() + accFill('M48 26 L48 19 C54 16 58 17 59 20 L59 27 C56 24 52 24 48 26 Z M72 26 L72 19 C66 16 62 17 61 20 L61 27 C64 24 68 24 72 26 Z'),
+  'Bertha collar': top({ neck: 'scoop', sleeves: 'none', accentNeck: false }) + accFill('M28 34 Q60 50 92 34 Q92 50 76 58 Q60 64 44 58 Q28 50 28 34 Z') + ln('M48 30 C50 46 70 46 72 30', 1.6),
+  'Bow collar': shirt() + accFill('M60 30 L48 24 L46 36 Z M60 30 L72 24 L74 36 Z') + acc('M58 32 L54 48 M62 32 L66 48', 2.5) + dot(60, 30, 3, ACC),
+  'Button-down collar': shirt() + accFill('M60 31 L46 24 L49 46 Z M60 31 L74 24 L71 46 Z') + dot(49, 42, 1.8) + dot(71, 42, 1.8),
+  'Camp collar': shirt('short') + accFill('M60 44 L48 26 L38 36 Z M60 44 L72 26 L82 36 Z'),
+  'Chelsea collar': top({ neck: 'v', accentNeck: false, sleeves: 'full' }) + accFill('M60 48 L48 26 L40 46 Z M60 48 L72 26 L80 46 Z'),
+  'Club collar': shirt() + accFill('M60 31 L46 24 L46 40 Q47 46 53 42 Z M60 31 L74 24 L74 40 Q73 46 67 42 Z'),
+  'Convertible collar': shirt() + accFill('M60 40 L46 24 L42 44 Z M60 40 L74 24 L78 44 Z') + dot(63, 36, 1.8),
+  'Cutaway collar': shirt() + accFill('M60 31 L46 24 L38 40 Z M60 31 L74 24 L82 40 Z'),
+  'Jabot': shirt() + accFill('M56 30 Q50 40 54 44 Q48 52 54 56 Q50 64 58 66 L62 66 Q70 64 66 56 Q72 52 66 44 Q70 40 64 30 Z'),
+  'Mandarin collar': shirt() + accFill('M48 26 L48 20 C52 17 56 17 58 20 Q59 24 58 27 C54 24 51 24 48 26 Z M72 26 L72 20 C68 17 64 17 62 20 Q61 24 62 27 C66 24 69 24 72 26 Z'),
+  'Notched lapel': jacket(accFill('M60 70 L48 24 L40 30 L44 44 L38 46 Z M60 70 L72 24 L80 30 L76 44 L82 46 Z')),
+  'Peak lapel': jacket(accFill('M60 70 L48 24 L40 30 L44 42 L34 38 L38 50 Z M60 70 L72 24 L80 30 L76 42 L86 38 L82 50 Z')),
+  'Peter Pan collar': top({ neck: 'crew', accentNeck: false, sleeves: 'puff' }) + accFill('M60 34 C54 34 48 30 48 26 C42 28 40 36 44 40 C50 44 58 40 60 34 Z M60 34 C66 34 72 30 72 26 C78 28 80 36 76 40 C70 44 62 40 60 34 Z'),
+  'Point collar': shirt() + accFill('M60 31 L46 24 L51 48 Z M60 31 L74 24 L69 48 Z'),
+  'Polo collar': top({ neck: 'crew', accentNeck: false, sleeves: 'short' }) + ln('M60 32 L60 52', 1.4) + buttons(62, [40, 48]) + accFill('M58 32 L46 24 L44 42 Z M62 32 L74 24 L76 42 Z'),
+  'Ruffled collar': shirt() + acc('M46 22 Q50 18 54 22 Q58 18 60 22 Q62 18 66 22 Q70 18 74 22 M46 28 Q50 24 54 28 Q58 24 60 28 Q62 24 66 28 Q70 24 74 28', 2.2),
+  'Sailor collar': top({ neck: 'v', accentNeck: false, sleeves: 'short' }) + accFill('M60 54 L48 26 L34 34 L42 44 Z M60 54 L72 26 L86 34 L78 44 Z') + acc('M58 48 L46 32 M62 48 L74 32', 1.4) + accFill('M56 54 L64 54 L62 60 L58 60 Z'),
+  'Shawl collar': jacket(accFill('M60 70 L48 24 C36 30 34 50 60 70 Z M60 70 L72 24 C84 30 86 50 60 70 Z')),
+  'Tab collar': shirt() + accFill('M60 31 L46 24 L50 46 Z M60 31 L74 24 L70 46 Z') + ln('M52 36 L68 36', 2.6, ACC),
+  'Wing collar': shirt() + accFill('M48 26 L48 18 Q60 14 72 18 L72 26 Q60 22 48 26 Z') + accFill('M56 22 L50 28 L56 28 Z M64 22 L70 28 L64 28 Z') + ln('M54 30 L66 30 L66 34 L54 34 Z', 1.6)
+};
+const S = (k, neck = 'crew') => top({ neck, sleeves: k, accentSleeve: true, accentNeck: false });
+const strapTop = () => body('M34 46 Q60 40 86 46 L86 106 L34 106 Z');
+export const sleeveArt = {
+  '3/4 sleeve': S('three'), 'Angel sleeve': S('angel', 'scoop'), 'Balloon sleeve': S('balloon'), 'Batwing sleeve': S('batwing'),
+  'Bell sleeve': S('bell', 'v'), 'Bishop sleeve': S('bishop'), 'Bracelet sleeve': S('bracelet'), 'Butterfly sleeve': S('butterfly', 'v'),
+  'Cap sleeve': S('cap'), 'Cuffed sleeve': S('cuffed') + placket(32), 'Dolman sleeve': S('dolman', 'v'), 'Drop-shoulder sleeve': S('drop'),
+  'Elbow sleeve': S('elbow'), 'Flutter sleeve': S('flutter', 'v'), 'Full sleeve': S('full'), 'Half sleeve': S('half'),
+  'Juliet sleeve': S('juliet', 'square'), 'Kimono sleeve': S('kimono', 'v'), 'Lantern sleeve': S('lantern'), 'Leg-of-mutton sleeve': S('mutton', 'high'),
+  'Petal sleeve': S('petal'), 'Poet sleeve': S('poet', 'v'), 'Puff sleeve': S('puff', 'square'), 'Raglan sleeve': S('raglan'),
+  'Roll-up sleeve': S('rollup') + placket(32), 'Ruffle sleeve': S('ruffle'), 'Set-in sleeve': S('setin'), 'Short sleeve': S('short'),
+  'Sleeveless': top({ neck: 'crew', sleeves: 'none', accentNeck: false }) + both(acc('M30 33 Q30 46 32 52')),
+  'Slit sleeve': S('slit'), 'Spaghetti strap': strapTop() + both(acc('M40 44 L44 16', 2)), 'Strap sleeve': strapTop() + both(accFill('M38 45 L41 16 L47 16 L46 44 Z'))
+};
