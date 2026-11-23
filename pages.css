@@ -1187,3 +1187,13 @@ body.page-tool, body:has(.tl-main) { background: #FBF6EF; }
   .fg-grid { grid-template-columns: 1fr; }
   .fg-tools { padding-top: .75rem; }
 }
+.fg-term { display: flex; flex-direction: column; padding: 0; overflow: hidden; }
+.fg-text { padding: .9rem 1.1rem 1rem; }
+.fg-visual { margin: 0; position: relative; aspect-ratio: 4 / 3; background: #FFF9F0; border-bottom: 1px solid var(--line); display: grid; place-items: center; overflow: hidden; }
+.fg-visual img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.fg-visual .fg-art { height: 100%; width: auto; max-width: 100%; display: block; }
+.fg-photo figcaption { position: absolute; right: 0; bottom: 0; padding: .15rem .45rem; font-size: .68rem; color: #fff; background: rgba(24, 20, 16, .55); border-top-left-radius: .5rem; }
+.fg-photo figcaption a { color: #fff; }
+.fg-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+@media (max-width: 960px) { .fg-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 560px) { .fg-grid { grid-template-columns: 1fr; } .fg-visual { aspect-ratio: 16 / 10; } }

@@ -1,5 +1,8 @@
 // Renders the A-Z fashion glossary page (/glossary/fashion-terms/) from content/fashion-glossary.mjs.
 import { fashionTerms, fashionCategories } from '../content/fashion-glossary.mjs';
+import { fashionPhotos } from '../content/fashion-glossary-photos.mjs';
+import { drawingFor } from './fg-art/index.mjs';
+const UTM = '?utm_source=stylebff&utm_medium=referral';
 
 export const FASHION_GLOSSARY_PATH = '/glossary/fashion-terms/';
 
@@ -32,7 +35,11 @@ export function fashionGlossary({ esc, slugify, siteUrl, existing }) {
   const termHtml = ([term, cat, def, aka]) => {
     const link = deeperPages[term.toLowerCase()];
     const more = link && existing(link) ? ' <a class="fg-more" href="' + link + '">Read more</a>' : '';
-    return '<div class="fg-term" id="' + idOf(term) + '" data-cat="' + cat + '"><h3>' + esc(term) + '</h3><span class="fg-cat">' + esc(catLabel[cat]) + '</span><p>' + esc(def) + more + '</p>' + (aka ? '<p class="fg-aka">Also called: ' + esc(aka) + '</p>' : '') + '</div>';
+    const ph = fashionPhotos[term];
+    const visual = ph
+      ? '<figure class="fg-visual fg-photo"><img src="https://images.unsplash.com/' + ph[0] + '?w=480&amp;h=360&amp;fit=crop&amp;crop=entropy&amp;fm=webp&amp;q=70" width="480" height="360" loading="lazy" decoding="async" alt="' + esc('Example of ' + term.toLowerCase()) + '"/><figcaption>Photo: <a href="https://unsplash.com/@' + ph[2] + UTM + '" rel="nofollow noopener" target="_blank">' + esc(ph[1]) + '</a> / <a href="https://unsplash.com/photos/' + ph[3] + UTM + '" rel="nofollow noopener" target="_blank">Unsplash</a></figcaption></figure>'
+      : '<figure class="fg-visual fg-drawing">' + drawingFor(term, cat) + '</figure>';
+    return '<div class="fg-term" id="' + idOf(term) + '" data-cat="' + cat + '">' + visual + '<div class="fg-text"><h3>' + esc(term) + '</h3><span class="fg-cat">' + esc(catLabel[cat]) + '</span><p>' + esc(def) + more + '</p>' + (aka ? '<p class="fg-aka">Also called: ' + esc(aka) + '</p>' : '') + '</div></div>';
   };
 
   const letters = [...groups.keys()];
@@ -40,8 +47,9 @@ export function fashionGlossary({ esc, slugify, siteUrl, existing }) {
   const tools = '<div class="fg-tools"><label class="fg-search-label" for="fg-search">Search the glossary <span>(try raglan, ikat or midi)</span></label><input id="fg-search" class="fg-search" type="search" autocomplete="off"/><div class="fg-chips" role="group" aria-label="Filter by category"><button type="button" class="fg-chip is-on" data-cat="all">All (' + fashionTerms.length + ')</button>' + fashionCategories.map(([k, label]) => '<button type="button" class="fg-chip" data-cat="' + k + '">' + esc(label) + ' (' + (counts[k] || 0) + ')</button>').join('') + '</div><p class="fg-count" aria-live="polite"></p></div>';
   const list = letters.map(l => '<section class="fg-letter" id="letter-' + (l === '#' ? 'num' : l.toLowerCase()) + '"><h2>' + l + '</h2><div class="fg-grid">' + groups.get(l).map(termHtml).join('') + '</div></section>').join('');
   const browse = '<section class="article-section fg-browse"><h2>Browse fashion terms by category</h2>' + fashionCategories.map(([k, label]) => '<details><summary>' + esc(label) + ' (' + (counts[k] || 0) + ')</summary><p>' + sorted.filter(t => t[1] === k).map(t => '<a href="#' + idOf(t[0]) + '">' + esc(t[0]) + '</a>').join(' · ') + '</p></details>').join('') + '</section>';
-  const script = '<script>(()=>{const q=document.getElementById("fg-search"),chips=[...document.querySelectorAll(".fg-chip")],terms=[...document.querySelectorAll(".fg-term")],letters=[...document.querySelectorAll(".fg-letter")],count=document.querySelector(".fg-count");let cat="all";const run=()=>{const s=q.value.trim().toLowerCase();let n=0;for(const t of terms){const ok=(cat==="all"||t.dataset.cat===cat)&&(!s||t.textContent.toLowerCase().includes(s));t.hidden=!ok;if(ok)n++}for(const l of letters)l.hidden=!l.querySelector(".fg-term:not([hidden])");count.textContent=(s||cat!=="all")?n+" of "+terms.length+" terms":""};q.addEventListener("input",run);for(const c of chips)c.addEventListener("click",()=>{cat=c.dataset.cat;chips.forEach(x=>x.classList.toggle("is-on",x===c));run()})})();</script>';
+  const script = '<script>(()=>{const q=document.getElementById("fg-search"),chips=[...document.querySelectorAll(".fg-chip")],terms=[...document.querySelectorAll(".fg-term")],letters=[...document.querySelectorAll(".fg-letter")],count=document.querySelector(".fg-count");let cat="all";const run=()=>{const s=q.value.trim().toLowerCase();let n=0;for(const t of terms){const ok=(cat==="all"||t.dataset.cat===cat)&&(!s||t.querySelector(".fg-text").textContent.toLowerCase().includes(s));t.hidden=!ok;if(ok)n++}for(const l of letters)l.hidden=!l.querySelector(".fg-term:not([hidden])");count.textContent=(s||cat!=="all")?n+" of "+terms.length+" terms":""};q.addEventListener("input",run);for(const c of chips)c.addEventListener("click",()=>{cat=c.dataset.cat;chips.forEach(x=>x.classList.toggle("is-on",x===c));run()})})();</script>';
 
+  const photoCount = fashionTerms.filter(t => fashionPhotos[t[0]]).length;
   const html = tools + az + '<div class="fg-list">' + list + '</div>' + browse + script;
   const schema = {
     '@type': 'DefinedTermSet',
@@ -49,5 +57,5 @@ export function fashionGlossary({ esc, slugify, siteUrl, existing }) {
     'description': 'Definitions of ' + fashionTerms.length + ' fashion terms: necklines, collars, sleeves, silhouettes, fabrics, prints, construction details, shoes, bags, Indian wear and styling terms.',
     'hasDefinedTerm': sorted.map(([term, cat, def]) => ({ '@type': 'DefinedTerm', 'name': term, 'description': def, 'url': siteUrl + FASHION_GLOSSARY_PATH + '#' + idOf(term), 'termCode': catLabel[cat] }))
   };
-  return { html, schema, total: fashionTerms.length };
+  return { html, schema, total: fashionTerms.length, photoCount };
 }
