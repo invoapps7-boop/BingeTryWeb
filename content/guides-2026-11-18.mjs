@@ -53,7 +53,7 @@ export const guides2026_11_18 = [
       ['How should a woman over 50 dress to look younger?', 'Put fit and color first: clothes that fit the body you have now, a flattering color near your face and one current piece per outfit. Keep classics such as a well-cut blazer, straight or wide-leg jeans in a clean wash and simple shoes, and update your frames and haircut if they have not changed in years.']
     ],
     sources: [PLOS, FRONTIERS],
-    related: ['/blog/colors-that-make-you-look-younger/', '/blog/what-colors-look-good-on-me/', '/blog/how-to-dress-for-your-body-type/', '/blog/how-to-look-good-every-day/', '/quiz/']
+    related: ['/blog/colors-that-make-you-look-younger/', '/blog/what-colors-look-good-on-me/', '/blog/how-to-dress-for-your-body-type/', '/blog/how-to-look-good-every-day/', '/blog/how-to-look-expensive-on-a-budget/', '/quiz/']
   },
   {
     slug: 'colors-that-make-you-look-younger',
@@ -157,6 +157,6 @@ export const guides2026_11_18 = [
       ['How do I look good on a video call?', 'Wear a solid color that suits you, avoid very fine stripes that can flicker on camera, face a window for light and keep the camera at eye level.'],
       ['How can I look more attractive as a woman?', 'From a style point of view, focus on what clothes can change: fit that shows your shape, colors that suit your coloring near your face, and pieces you feel comfortable in. Comfort and confidence show in how you carry yourself.']
     ],
-    related: ['/blog/how-to-find-your-style/', '/blog/what-should-i-wear-today-from-my-closet/', '/blog/how-to-dress-for-your-body-type/', '/blog/how-to-dress-to-look-younger/', '/tools/outfit-generator/']
+    related: ['/blog/how-to-find-your-style/', '/blog/what-should-i-wear-today-from-my-closet/', '/blog/how-to-dress-for-your-body-type/', '/blog/how-to-dress-to-look-younger/', '/blog/how-to-look-more-attractive-as-a-woman/', '/blog/how-to-look-expensive-on-a-budget/', '/tools/outfit-generator/']
   }
 ];
