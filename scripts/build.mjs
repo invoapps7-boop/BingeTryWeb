@@ -13,6 +13,27 @@ import { seasonContent } from '../content/seasons.mjs';
 import { extraComparisonEvidence, seasonalGuide } from '../content/pages.mjs';
 import { listicles } from '../content/listicles.mjs';
 import { guides, guidePublished } from '../content/guides.mjs';
+import { depthFeatures } from '../content/depth-features-2026-11-27.mjs';
+import { depthBlogA } from '../content/depth-blog-a-2026-11-27.mjs';
+import { depthBlogB } from '../content/depth-blog-b-2026-11-27.mjs';
+import { depthExtra } from '../content/depth-extra-2026-11-27.mjs';
+import { depthExtra2 } from '../content/depth-extra2-2026-11-27.mjs';
+import { depthLinks } from '../content/depth-links-2026-11-27.mjs';
+const DEPTH = {};
+for (const m of [depthFeatures, depthBlogA, depthBlogB, depthExtra, depthExtra2, depthLinks]) for (const [k, v] of Object.entries(m)) { const d = DEPTH[k] || (DEPTH[k] = {sections: [], faq: []}); d.sections.push(...(v.sections || [])); d.faq.push(...(v.faq || [])); }
+for (const d of Object.values(DEPTH)) d.sections.sort((x, y) => (x[0].startsWith('Sources') ? 1 : 0) - (y[0].startsWith('Sources') ? 1 : 0));
+const DEPTH_UPDATED = '2026-11-27';
+// Adds extra sections (before Sources / Related) and FAQs to existing pages (seo-ops B22, B23).
+function applyDepth(page) {
+  const d = DEPTH[page.path];
+  if (!d) return page;
+  const tail = new Set(['Sources','Related guides','Related answers','Read next']);
+  const secs = [...(page.sections || [])];
+  const at = secs.findIndex(x => tail.has(x[0]));
+  secs.splice(at < 0 ? secs.length : at, 0, ...(d.sections || []));
+  const schema = page.schema && page.schema.dateModified ? {...page.schema, dateModified: DEPTH_UPDATED} : page.schema;
+  return {...page, sections: secs, faq: [...(page.faq || []), ...(d.faq || [])], lastModified: DEPTH_UPDATED, schema};
+}
 import { toolsKit, toolLayout, toolsHubLayout, quizCard } from './tools-pages.mjs';
 import { mediumArticle, mediumHub, mediumMore, readMinutes, slugOf } from './medium.mjs';
 import { styleTrackHtml } from './style-track.mjs';
@@ -228,6 +249,7 @@ function pageBody(page) {
 }
 
 async function writeRoute(page, group='pages') {
+  page = applyDepth(page);
   const isEditorialRoute = group === 'blog' || page.path.startsWith('/compare/');
   const renderedPage = {...page, editorial: page.editorial ?? isEditorialRoute};
   const clean = renderedPage.path === '/' ? '' : renderedPage.path.replace(/^\/|\/$/g,'');
