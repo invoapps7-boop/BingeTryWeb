@@ -5,6 +5,8 @@
 import { guides2026_11_10 } from './guides-2026-11-10.mjs';
 import { guides2026_11_18 } from './guides-2026-11-18.mjs';
 import { guides2026_11_13 } from './guides-2026-11-13.mjs';
+import { guides2026_11_25 } from './guides-2026-11-25.mjs';
+import { guides2026_11_27 } from './guides-2026-11-27.mjs';
 const a = (href, label) => '<a href="' + href + '">' + label + '</a>';
 const table = (head, rows) => '<div class="table-wrap"><table><thead><tr>' + head.map(h => '<th>' + h + '</th>').join('') + '</tr></thead><tbody>' + rows.map(r => '<tr>' + r.map(c => '<td>' + c + '</td>').join('') + '</tr>').join('') + '</tbody></table></div>';
 const APP = ['Style BFF on the App Store', 'https://apps.apple.com/us/app/id6767003047'];
@@ -257,3 +259,5 @@ export const guides = [
 guides.push(...guides2026_11_10);
 guides.push(...guides2026_11_18);
 guides.push(...guides2026_11_13);
+guides.push(...guides2026_11_25);
+guides.push(...guides2026_11_27);
